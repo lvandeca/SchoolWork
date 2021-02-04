@@ -1,6 +1,6 @@
 """
 Author: Luke Vandecasteele
-Date: 2/1/2021 Last Modified: 2/2/2021
+Date: 2/1/2021 Last Modified: 2/4/2021
 Credits: Class notes
 Description: Implementation of a PriorityQueue class using a heap data
              structure.
@@ -25,14 +25,9 @@ class PriorityQueue():
         self._currentSize = 0
         self._heap = []
 
-        try:
-            invalidInput = (capacity < 1)           #invalid input if capacity
-            if(invalidInput):                       #is not an integer > 1, use
-                self._maxSize = DEFAULT_CAPACITY    #DEFAULT_CAPACITY
-            else:
-                self._maxSize = capacity
-
-        except TypeError:
+        if type(capacity) == int and capacity > 0:
+            self._maxSize = capacity
+        else:
             self._maxSize = DEFAULT_CAPACITY
 
     def __str__(self):
@@ -66,7 +61,7 @@ class PriorityQueue():
         if(success):
             self._heap.append(ticket)
             self._currentSize += 1
-            self.isEmpty() or self._heapInsert(self._currentSize - 1)
+            self.isEmpty() or self._siftUp(self._currentSize - 1)
 
         return success
 
@@ -83,7 +78,7 @@ class PriorityQueue():
             self._heap[0] = self._heap[self._currentSize]
             del self._heap[self._currentSize]
 
-            self._heapDelete()
+            self._siftDown()
 
         return success
 
@@ -98,7 +93,7 @@ class PriorityQueue():
 
         return success
 
-    def _heapInsert(self, child):
+    def _siftUp(self, child):
         """Bottom up fix of self._heap to fix heap structure after insertion
         into the queue. Called by self.enqueue(). Returns None."""
 
@@ -112,7 +107,7 @@ class PriorityQueue():
 
         return None
 
-    def _heapDelete(self):
+    def _siftDown(self):
         """Top down fix of self._heap to fix heap structure after removal of
         max element from the queue. Called by self.dequeueMax(). Return None"""
 
