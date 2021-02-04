@@ -1,0 +1,154 @@
+Luke Vandecasteele
+CIS 314
+Assignment 2
+Questions 4, 5, 6
+
+
+
+4) Convert the following hex values to decimal assuming that they are stored as 32-bit 2's complement integers
+
+
+	a) 0x000000C6
+	
+	The leading bit is a 0, so the number is positive. Just convert to binary and add appropriately:
+		C = 12 = 1100
+		6 =      0110
+
+		-> 1100 0110 -> 128 + 64 + 4 + 2 = 198
+		
+		0x000000C6 = 198
+
+
+	b) 0xFFFFFEC4
+
+	Leading bit is a 1, so the number is negative. Since we know all ones is equal to negative one, (i.e. 0xFFFFFFFF = -1), we can just subtract the missing bits from -1 to get our answer:
+
+		E = 15 = 1110
+		C = 12 = 1100
+		4 =      0100
+
+		-> 1110 1100 0100 -> 256 + 32 + 16 + 8 + 2 + 1 = 315 (these are the missing bits added together)
+		-> (-1) - (315) = -316
+
+		0xFFFFFEC4 = -316
+
+
+	c) 0xFFFFFFFF
+
+	All one's in 2's complement translates to -1
+
+		0xFFFFFFFF = -1
+
+
+
+5) Convert the folowing hex values to decimal assuming that they are encoded as IEEE 754 single-precision floating-point numbers
+
+
+	a) 0x80000000
+
+	First convert to binary:
+		0x80000000 = 1000 0000 0000 0000 0000 0000 0000 0000
+	
+	Isolate the sign bit, expontent bits, and fraction bits:
+		s = 1
+		exp = 0000 0000
+		frac = 000 0000 0000 0000 0000 0000
+	
+	Next we can find E:
+		E  = exp - 127 = 0 - 127 = -127
+
+	Last, use formula to get decimal:
+		((-1)**1) * (1.00000000000000000000000) * (2 ** (-127)) = -0.0
+
+	0x80000000 = -0.0
+
+
+	b) 0x3FC00000
+
+	First convert to binary:
+		0x3FC00000 = 0 0111 1111 100 0000 0000 0000 0000 0000
+	
+	Isolate sign bit, exponent bits, and fraction bits:
+		s = 0
+		exp = 0111 1111 = 127
+		frac = 100 0000 0000 0000 0000 0000
+	
+	Find E:
+		E = exp -127 = 127 - 127 = 0
+
+	Use the formula to get decimal:
+		((-1)**0) * (1.10000000000000000000000) * (2 ** (0)) = 1.1 -> 1.5
+
+	0x3FC00000 = 1.5
+
+
+	c) 0xC1340000
+
+	Simply follow the same steps as before:
+		0xC1340000 = 1 1000 0010 011 0100 0000 0000 0000 0000
+	 	
+		s = 1
+		exp = 1000 0010 = 130
+		frac = 011 0100 0000 0000 0000 0000
+
+		E = exp - 127 = 130 - 127 = 3
+
+		((-1) ** 1) * (1.01101000000000000000000) (2 ** (3)) = -1011.01 -> -11.25
+
+	0xC1340000 = -11.25
+
+
+
+6) Convert the following decimal numbers to hex encoded as IEEE 754 single precision floating-point numbers
+
+
+	a) 1.0
+
+	Write in binary and normalize:
+		(1.0) * (2**0)
+
+	Extract sign bit, exponent and frac:
+		s = 0
+		frac = 000 0000 0000 0000 0000 0000
+		E  = 0 -> 0 + 127 = exp = 127 = 0111 1111
+	
+	Combine all the binary digits and convert to hex appropriately:
+		0 0111 1111 000 0000 0000 0000 0000 0000 =
+		3    F    8     0    0    0    0    0    =
+		0x3F800000
+
+	1.0 = 0x3F800000
+
+
+	b) 16.5
+
+	Follow the same steps as in (a):
+
+		16.5 = 10000.1 = 1.00001 * (2 ** 4)
+
+		s = 0
+		frac = 000 0100 0000 0000 0000 0000
+		E = 4 -> 4 + 127 = exp = 131 = 1000 0011
+
+		0 1000 0011 000 0100 0000 0000 0000 0000 =
+		4    1    8     4    0    0    0    0    =
+		0x41840000
+
+	16.5 = 0x41840000
+
+
+	c) -314.75
+
+	Follow the same steps as in (a):
+
+		314.75 = 100111010.11 = 1.0011101011 * (2 ** 8)
+
+		s = 1
+		frac = 001 1101 0110 0000 0000 0000
+		E = 8 -> 8 + 127 = exp = 135 = 1000 0011
+
+		1 1000 0011 001 1101 0110 0000 0000 0000 =
+		C    3    9     D    6    0    0    0    =
+		0xC39D60000
+
+	-314.75 = 0xC39D60000	
