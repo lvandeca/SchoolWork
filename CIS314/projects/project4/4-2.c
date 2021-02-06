@@ -45,9 +45,8 @@ __asm__(
 ".L2:;"             // # label loop
 "addq %rdi, %rax;"  // # result += from
 "addq $1, %rdi;"    // # increment from (++from)
-"cmp %rdi, %rsi;"   // # if statement to set flags
+"cmp %rsi, %rdi;"   // # if statement to set flags
 "jle .L2;"          // # jump if from is <= to
-"ret;"              // # return %rax or return
 );
 
 // Ensure that *result* is in %rax for return - *do not modify*.
