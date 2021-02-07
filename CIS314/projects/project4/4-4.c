@@ -7,6 +7,8 @@ Notes:
       1.TODO
    */
 
+#include <stdio.h>
+
 //optimized assembly code for an array transpose
 /*
 .L10:
@@ -20,4 +22,35 @@ cmpq %r9, %rax
 jne .L10
     */
 
+#define N 4
+typedef long array_t[N][N];
 
+void transpose(array_t a){
+  for(long i = 0; i < N; ++i){
+    long *rp = &a[i][0];
+    long *cp = &a[0][i];
+    for(long j = 0; j < i; ++j){
+      long tmp1 = *rp;
+      long tmp2 = *cp;
+
+      *rp = tmp2;
+      *cp = tmp1;
+
+      rp += 8;
+      cp += 32;
+    }
+  }
+}
+
+
+int main(){
+  array_t list = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
+  transpose(list);
+  for (long i = 0; i < N; ++i) {
+    for (long j = 0; j < N; ++j) {
+      printf("%ld ", list[i][j]);
+    }
+    printf("\n");
+ }
+  return 0;
+}
