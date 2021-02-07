@@ -1,16 +1,13 @@
 /* Author: Luke Vandecasteele
-Date: 1/5/2021 Last Modified: 2/5/2021
+Date: 1/5/2021 Last Modified: 2/6/2021
 Credits: None
 Description: using "goto" and labels plus writing in assembly
-Notes:
-       1. TODO
 */
-
 
 #include <stdio.h>
 
+//===================================Part a====================================
 //impelentation of sum() function from q2 using a goto label
-
 
 /*
 int sum(int from, int to){
@@ -25,6 +22,9 @@ int sum(int from, int to){
   return result;
 }
 */
+
+
+//===================================Part b====================================
 
 long sum(long from, long to) {
 // Declare and initialize result var – *do not modify*.
@@ -54,7 +54,10 @@ __asm__ ("movq %%rax, %0 #result in rax;" : "=r" ( result ));
 return result;
 }
 
+//=====================================Main=====================================
+
 int main(){
+  //test runs for sum function written using assembly
   printf("%ld\n", sum(1L,6L));     // 21
   printf("%ld\n", sum(3L,5L));     // 12
   printf("%ld\n", sum(5L,3L));     // 5

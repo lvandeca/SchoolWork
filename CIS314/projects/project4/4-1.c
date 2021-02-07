@@ -1,23 +1,24 @@
 /* Author: Luke Vandecasteele
-Date: 2/4/2021 Last Modified: 2/4/2021
+Date: 2/4/2021 Last Modified: 2/6/2021
 Credits: None
 Description: Simple problem solving between assembly and C code
 */
 
 #include <stdio.h>
 
+//========================Assembly and loop function===========================
 
 //loop:
-//  movq %rsi, %rcx         #
-//  movl $1, %eax
-//  movl $0, %edx
+//  movq %rsi, %rcx         //put b into the increment register
+//  movl $1, %eax           //store 1
+//  movl $0, %edx           //store 0
 //.L2:
-//  testq %rax, %rax
+//  testq %rax, %rax        //check that mask is not 0
 //  je .L4
-//  movq %rax, %r8
-//  andq %rdi, %r8
-//  orq %r8, %rdx
-//  salq %cl, %rax
+//  movq %rax, %r8          //move mask out of return register
+//  andq %rdi, %r8          //(mask & a) store in mask
+//  orq %r8, %rdx           //or result and mask 
+//  salq %cl, %rax          //left shift mask by b
 //  jmp .L2
 //.L4:
 //  movq %rdx, %rax
@@ -32,6 +33,7 @@ long loop(long a, long b){
   return result;
 }
 
+//===================================Main======================================
 
 int main(){
   //test runs for loop()
