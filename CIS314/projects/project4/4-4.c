@@ -29,15 +29,13 @@ void transpose(array_t a){
   for(long i = 0; i < N; ++i){
     long *rp = &a[i][0];
     long *cp = &a[0][i];
-    for(long j = 0; j < i; ++j){
-      long tmp1 = *rp;
-      long tmp2 = *cp;
-
-      *rp = tmp2;
-      *cp = tmp1;
-
-      rp += 8;
-      cp += 32;
+    while(rp != cp){
+	    long t1 = *rp;
+	    long t2 = *cp;
+	    *rp = t2;
+	    *cp = t1;
+	    rp++;
+	    cp += N;
     }
   }
 }

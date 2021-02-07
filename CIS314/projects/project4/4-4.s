@@ -3,44 +3,51 @@
 	.globl	transpose
 	.type	transpose, @function
 transpose:
-.LFB0:
+.LFB11:
 	.cfi_startproc
-	movq	%rdi, %r9
-	movl	$0, %esi
+	movl	$0, %r8d
 	jmp	.L2
 .L4:
-	movq	(%rax), %rdi
-	movq	(%rdx), %r8
-	movq	%r8, (%rax)
-	movq	%rdi, (%rdx)
-	addq	$64, %rax
-	addq	$256, %rdx
-	addq	$1, %rcx
+	movq	(%rax), %rcx
+	movq	(%rdx), %rsi
+	movq	%rsi, (%rax)
+	movq	%rcx, (%rdx)
+	addq	$8, %rax
+	addq	$32, %rdx
 .L3:
-	cmpq	%rcx, %rsi
-	jg	.L4
-	addq	$1, %rsi
+	cmpq	%rdx, %rax
+	jne	.L4
+	addq	$1, %r8
 .L2:
-	cmpq	$3, %rsi
+	cmpq	$3, %r8
 	jg	.L6
-	movq	%rsi, %rax
+	movq	%r8, %rax
 	salq	$5, %rax
-	addq	%r9, %rax
-	leaq	(%r9,%rsi,8), %rdx
-	movl	$0, %ecx
+	addq	%rdi, %rax
+	leaq	(%rdi,%r8,8), %rdx
 	jmp	.L3
 .L6:
 	ret
 	.cfi_endproc
-.LFE0:
+.LFE11:
 	.size	transpose, .-transpose
+	.section	.rodata.str1.1,"aMS",@progbits,1
+.LC0:
+	.string	"%ld "
+	.text
 	.globl	main
 	.type	main, @function
 main:
-.LFB1:
+.LFB12:
 	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	pushq	%rbx
+	.cfi_def_cfa_offset 24
+	.cfi_offset 3, -24
 	subq	$152, %rsp
-	.cfi_def_cfa_offset 160
+	.cfi_def_cfa_offset 176
 	movq	%fs:40, %rax
 	movq	%rax, 136(%rsp)
 	xorl	%eax, %eax
@@ -62,19 +69,44 @@ main:
 	movq	$16, 120(%rsp)
 	movq	%rsp, %rdi
 	call	transpose
+	movl	$0, %ebp
+	jmp	.L8
+.L9:
+	leaq	(%rbx,%rbp,4), %rax
+	movq	(%rsp,%rax,8), %rsi
+	leaq	.LC0(%rip), %rdi
+	movl	$0, %eax
+	call	printf@PLT
+	addq	$1, %rbx
+.L10:
+	cmpq	$3, %rbx
+	jle	.L9
+	movl	$10, %edi
+	call	putchar@PLT
+	addq	$1, %rbp
+.L8:
+	cmpq	$3, %rbp
+	jg	.L14
+	movl	$0, %ebx
+	jmp	.L10
+.L14:
 	movq	136(%rsp), %rax
-	subq	%fs:40, %rax
-	jne	.L10
+	xorq	%fs:40, %rax
+	jne	.L15
 	movl	$0, %eax
 	addq	$152, %rsp
 	.cfi_remember_state
+	.cfi_def_cfa_offset 24
+	popq	%rbx
+	.cfi_def_cfa_offset 16
+	popq	%rbp
 	.cfi_def_cfa_offset 8
 	ret
-.L10:
+.L15:
 	.cfi_restore_state
 	call	__stack_chk_fail@PLT
 	.cfi_endproc
-.LFE1:
+.LFE12:
 	.size	main, .-main
-	.ident	"GCC: (GNU) 10.2.0"
+	.ident	"GCC: (Arch Linux 9.3.0-1) 9.3.0"
 	.section	.note.GNU-stack,"",@progbits
