@@ -129,7 +129,7 @@ class PriorityQueue():
         swapped = True
 
         #continue if swap was made, and bottom row of tree hasnt been passed
-        while(swapped and parent <= maxParent):
+        while(swapped and parent < maxParent):
             child = self._greaterChild(parent)  #swap with larger child node
             swapped = self._swap(child, parent)
             parent = child
