@@ -6,8 +6,12 @@ Description: Implementation of a PriorityQueue class using a heap data
              structure.
 Notes:
       1. Enqueue and dequeueMax methods use different function calls to
-         restructure heap
-      2. TODO: add better documentation
+         restructure heap (self._siftUp() and self._siftDown() respectively)
+      2. Both methods self._siftUp() and self._siftDown() are O(log(n)) since
+         the counter for the loop is either incremented by 2*i (as we go up the
+         heap) or decremented by i//2 (as we go down the heap) which means in
+         both cases we only cover each "level" of the tree and not ever single
+         element in the heap, making the running time O(long(n)) and not O(n).
 """
 
 from mealticket import *
@@ -25,10 +29,10 @@ class PriorityQueue():
         self._currentSize = 0
         self._heap = []
 
-        if type(capacity) == int and capacity > 0:
-            self._maxSize = capacity
+        if type(capacity) == int and capacity > 0:      #valid input is an
+            self._maxSize = capacity                    #integer in (0,∞]
         else:
-            self._maxSize = DEFAULT_CAPACITY
+            self._maxSize = DEFAULT_CAPACITY    #non-valid input use default
 
     def __str__(self):
         """
@@ -56,11 +60,15 @@ class PriorityQueue():
         restructures the heap. Called by user. Calls self._heapInsert().
         Returns Boolean."""
 
+        #valid input is a MealTicket and the queue is not already full
         success = (type(ticket) == MealTicket and not self.isFull())
 
-        if(success):
-            self._heap.append(ticket)
-            self._currentSize += 1
+        if(success):                        #continue if valid input
+            self._heap.append(ticket)       #add ticket to end of list
+            self._currentSize += 1          
+
+            #if Queue is empty, we don't need to siftUp to maintain heap
+            #structure. Otherwise, self._siftUp()
             self.isEmpty() or self._siftUp(self._currentSize - 1)
 
         return success
@@ -69,16 +77,20 @@ class PriorityQueue():
         """Destructive read of the queue. Called by user. Calls self._heapDelete
         to maintain heap structure. Returns Boolean/MealTicket"""
 
-        success = (not self.isEmpty())
+        success = (not self.isEmpty())      #continue if Queue is not empty
+
 
         if(success):
-            success = self._heap[0]
-            self._currentSize -= 1
+            success = self._heap[0]         #get max element
+            self._currentSize -= 1          
 
+            #move last element in the heap to the front effectively removing max
             self._heap[0] = self._heap[self._currentSize]
+
+            #delete last element since it is now at the from of the heap
             del self._heap[self._currentSize]
 
-            self._siftDown()
+            self._siftDown()    #fix heap structure
 
         return success
 
@@ -86,10 +98,11 @@ class PriorityQueue():
         """Non-Destructive read of the queue. Called by user. Returns
         Boolean/MealTicket"""
 
-        success = (not self.isEmpty())
+        success = (not self.isEmpty())      #continue if Queue is not empty
+
 
         if(success):
-            success = self._heap[0]
+            success = self._heap[0]         #get max element
 
         return success
 
@@ -98,13 +111,13 @@ class PriorityQueue():
         into the queue. Called by self.enqueue(). Returns None."""
 
         swapped = True
-        while(swapped):
+        while(swapped):                         #only continue if a swap is made
             parent = self._getParent(child)
-            if(parent < 0):
+            if(parent < 0):                     #parent is not in heap, break loop
                 break
             swapped = self._swap(child, parent)
-            child = parent
-
+            child = parent                      #new child is old parent
+                                                #creating O(log(n)) behavior
         return None
 
     def _siftDown(self):
@@ -115,22 +128,24 @@ class PriorityQueue():
         parent = 0
         swapped = True
 
+        #continue if swap was made, and bottom row of tree hasnt been passed
         while(swapped and parent <= maxParent):
-            child = self._greaterChild(parent)
+            child = self._greaterChild(parent)  #swap with larger child node
             swapped = self._swap(child, parent)
             parent = child
 
         return None
 
     def _swap(self, child, parent):
-        """Helper function for heap restructuring fucntions. Switches child
+        """Helper function for heap restructuring functions. Switches child
         and parent to conform to heap structure. Returns Boolean."""
 
-        childID = self._heap[child].ticketID
-        parentID = self._heap[parent].ticketID
+        childID = self._heap[child].ticketID        #childID for comparison
+        parentID = self._heap[parent].ticketID      #parentID for comparison
+
 
         swapped = childID > parentID
-        if(swapped):
+        if swapped:                     
             tmpTicket = self._heap[parent]
             self._heap[parent] = self._heap[child]
             self._heap[child] = tmpTicket
