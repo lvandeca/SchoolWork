@@ -224,14 +224,10 @@ class PriorityQueue():
         return success
 
 
+#================================Testing HeapSort==============================#
+"""
 def printArray(array):
-    """
-    Author: Jared Hall
-    Date: 01/03/2020
-    Description: Output the current queue as a string.
-    Inputs: list
-    Outputs: str
-    """
+ 
     returnValue = "Current queue: ["
     if(len(array)!= 0):
         for ticket in array:
@@ -246,17 +242,22 @@ def printArray(array):
     return returnValue
 
 
+
 def main():
+    #basic test functions for self.heap_sort
 
     queue1 = PriorityQueue(8)
     tickets = generateMealTickets(8)
 
-    printArray(tickets)
+    result = printArray(tickets)
+    print(result)
     
     sortedTickets = queue1.heap_sort(tickets)
     print(queue1)
 
-    printArray(sortedTickets)
+    result = printArray(sortedTickets)
+    print(result)
 
 
 main()
+"""
