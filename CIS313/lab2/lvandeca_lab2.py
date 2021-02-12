@@ -222,3 +222,41 @@ class PriorityQueue():
             success = self._heap            #success = True, then return
                                             #self._heap (aka sorted list)
         return success
+
+
+def printArray(array):
+    """
+    Author: Jared Hall
+    Date: 01/03/2020
+    Description: Output the current queue as a string.
+    Inputs: list
+    Outputs: str
+    """
+    returnValue = "Current queue: ["
+    if(len(array)!= 0):
+        for ticket in array:
+            if(ticket is None):
+                break
+            else:
+                returnValue += "(" + str(ticket.ticketID) + ", "
+                returnValue += str(ticket.totalCost) + "), "
+        returnValue = returnValue[:-2] + "]"
+    else:
+        returnValue += "]"
+    return returnValue
+
+
+def main():
+
+    queue1 = PriorityQueue(8)
+    tickets = generateMealTickets(8)
+
+    printArray(tickets)
+    
+    sortedTickets = queue1.heap_sort(tickets)
+    print(queue1)
+
+    printArray(sortedTickets)
+
+
+main()
