@@ -1,3 +1,19 @@
+# Author: Luke Vandecasteele
+# Date: 2/16/2021 Last Modified: 2/17/2021
+# Credits: Class notes and powerpoints
+# Description: Implentation of Bubble Sort algorithm and swap function in
+#              y86-64 assembly code for CIS 314 at University of Oregon
+# Notes:
+#       1. For later me: there are differences between classic x86-64
+#          assembly code and the y86-64 that is implemented here. For
+#          example the movq instruction is implemented as irmovq, rrmovq, 
+#          mrmovq, and so on and so forth to specifically state what type of 
+#          move is happening whether it be register to register, register to
+#          memory, immiediate to register or whatever. Also, some instructions
+#          are not available like cmpq, leaq, testq, or memory calculations for
+#          movq.
+
+
 # Execution begins at address 0 
     .pos 0
     irmovq stack, %rsp      # Set up stack pointer
