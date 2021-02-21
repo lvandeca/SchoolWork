@@ -1,0 +1,21 @@
+Name: Luke Vandecasteele
+
+DuckID: lvandeca
+
+Classmates Who Assisted: N/A
+
+Current State of Project:
+wcnt.c works properly and as stated according to project specs
+ccnt.c works properly and as stated according to project specs
+wcfilter.c works properly and as stated according to project specs
+wcargs.c works properly and as stated according to project specs
+
+wc.c does not work 100% as specified by the project. 
+print output is correct when the input is:
+	./wc test1
+	./wc -lw test1 (or for any combination of -lwc)
+	./wc <test1
+but the ouput is not correct for:
+	./wc -lw <test1 (or any combo of -lwc)
+	and if multiple files are put into any of the 4 commands a total is not calculated properly
+

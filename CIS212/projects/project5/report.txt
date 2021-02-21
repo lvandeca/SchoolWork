@@ -1,0 +1,9 @@
+Name: Luke Vandecasteele
+duckID: lvandeca
+Classmates Whom Assissted: N/A
+Current State of Solution: Project works according to the project specs. Project displays the same output
+for small.in, medium.in, and large.in when reversed as small.out, medium.out and large.out respectively. Use
+of stringlist.c follows the header from stringlist.h.
+
+Extra Credit: alreverse.c also works according to the project specs and is similar to reverse.c except it uses an
+ArrayList rather than a StringList. Similarly it displays the same output for small.in, medium.in, and large.in when reversed as small.out, medium.out, and large.out respectively.

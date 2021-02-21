@@ -1,0 +1,4 @@
+Name: Luke Vandecasteele
+DuckID: lvandeca
+Classmates who helped: N/A
+Current State of Submission: Implemented a Set ADT using a hash table. Passed all the tests from ./longtest -h and ./stringtest -h. Returned no memory leaks when either ./longtest -h or ./stringtest -h was run with all the tests in valgrind.

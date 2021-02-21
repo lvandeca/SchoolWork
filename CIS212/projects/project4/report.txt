@@ -1,0 +1,4 @@
+Name: Luke Vandecasteele
+DuckID: lvandeca
+Classmates Whom Assisted: N/A
+Curent State of Solution: Project works according to the project specs. Passes all the test layed out by <tscript> and does so by using the String and ArrayList ADTs from the textbook and class.

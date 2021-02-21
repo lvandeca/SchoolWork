@@ -1,0 +1,4 @@
+Name: Luke Vandecasteele
+DuckID: 951703468
+Classmates Who Helped: N/A
+Current State of Submission: All 4 parts work and passed the test layed out by tscript

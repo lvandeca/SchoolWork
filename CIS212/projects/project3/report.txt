@@ -1,0 +1,4 @@
+Name: Luke Vandecasteele
+UOID: lvandeca
+Classmates who helped: N/A
+Current State of Submission: sgrep works as intended and passes all the test laid out by tscript

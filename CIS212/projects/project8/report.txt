@@ -1,0 +1,4 @@
+Name: Luke Vandecasteele
+duckID: lvandeca
+Classmates who assisted: N/A
+Current State of Submisson: wordfreq.c compiles and links the appropriate files according to the given Makefile. Passes all the tests from ./tscript. No memory leaks are encountered when running any of the commands from ./tscript

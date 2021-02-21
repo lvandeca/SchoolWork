@@ -1,0 +1,4 @@
+Name: Luke Vandecasteele
+duckID: lvandeca
+Classmates who helped: N/A
+Current state of Submission: Project works according to the project specs. Using the diff function to compare ./exerciseQueue EQsmall.in | diff - EQsmall.out generates no output. Similarly for EQmedium.in/out. exerciseQueue.c is linked to llistqueue.o and funtion printQueue within exerciseQueue.c useses an Iterator in the form of the itCreate() method to print elements in the Queue. valgrind ./exerciseQueue generates no memory leaks for any input file. llistqueue.c has all methods implemented as outlined by llistqueue.h and queue.h. in /usr/local/include/ADTs

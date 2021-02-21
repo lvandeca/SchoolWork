@@ -1,0 +1,4 @@
+Name: Luke Vandecasteele
+duckID: lvandeca
+ClassMates Who Helped: N\A
+Current State of Submission: Both exerciseStack.c and balanceCheck.c work according to the project specifications, and only use the generic Stack ADT data structure. Both programs also have no memory leaks and pass the "tests" using the various *.in files given in P6start.tgz
