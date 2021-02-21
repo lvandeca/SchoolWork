@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#
+#echo "Start"
+assembler=../Week8Project_Assembler
+simulator=../Week7Project_DuckMachineCPU
+pathto=$(dirname $1)/$(basename $1 .mal)
+#echo $pathto
+shift
+python3 ../Week9Project_Compiler/compile.py ${pathto}.mal ${pathto}.asm
+python3 ${assembler}/assembler_phase1.py ${pathto}.asm ${pathto}.dasm
+python3 ${assembler}/assembler_phase2.py ${pathto}.dasm ${pathto}.obj
+python3 ${simulator}/duck_machine.py ${pathto}.obj $*

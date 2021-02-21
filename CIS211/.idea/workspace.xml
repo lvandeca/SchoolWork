@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ce211f3c-d612-44db-8547-21a927f5d5b9" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="CIS211" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZtgaMFvwHb11fhU4tx2mOSv3uY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="CIS211_Lecture1" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="CIS211_Lecture1" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.aliasing">
+    <configuration name="Lab3_Shape3D" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CIS211_Lecture1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lab3_Shape3D.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Lab4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CIS211_Lecture1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lab4.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="aliasing" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CIS211_Lecture1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/aliasing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="game_manager" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="CIS211_Lecture1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Week2Project_FiveTwelve" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Week2Project_FiveTwelve/game_manager.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in test_model.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="CIS211_Lecture1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Week2Project_FiveTwelve" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/Week2Project_FiveTwelve/test_model.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.aliasing" />
+        <item itemvalue="Python.Lab4" />
+        <item itemvalue="Python tests.Unittests in test_model.py" />
+        <item itemvalue="Python.game_manager" />
+        <item itemvalue="Python.Lab3_Shape3D" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ce211f3c-d612-44db-8547-21a927f5d5b9" name="Default Changelist" comment="" />
+      <created>1585663866340</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585663866340</updated>
+      <workItem from="1585663871766" duration="236000" />
+      <workItem from="1585665560049" duration="786000" />
+      <workItem from="1585680817119" duration="9564000" />
+      <workItem from="1585884841812" duration="60000" />
+      <workItem from="1586100012469" duration="3177000" />
+      <workItem from="1586103275471" duration="5000" />
+      <workItem from="1586274824822" duration="6809000" />
+      <workItem from="1586792893740" duration="2404000" />
+      <workItem from="1586880006186" duration="4742000" />
+      <workItem from="1587488048224" duration="3516000" />
+      <workItem from="1588108509971" duration="1348000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="113" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585846807428">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="184" y="113" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1585846807428" />
+    <state width="783" height="466" key="DebuggerActiveHint" timestamp="1586102385497">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="783" height="466" key="DebuggerActiveHint/0.0.1440.900@0.0.1440.900" timestamp="1586102385497" />
+    <state x="508" y="213" key="FileChooserDialogImpl" timestamp="1585846653921">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="508" y="213" key="FileChooserDialogImpl/0.0.1440.900@0.0.1440.900" timestamp="1585846653921" />
+    <state width="1398" height="231" key="GridCell.Tab.0.bottom" timestamp="1588109824016">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1878" height="337" key="GridCell.Tab.0.bottom/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586884399146" />
+    <state width="1398" height="231" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1588109824016" />
+    <state width="1398" height="197" key="GridCell.Tab.0.bottom/0.23.1440.812@0.23.1440.812" timestamp="1588109410317" />
+    <state width="950" height="205" key="GridCell.Tab.0.bottom/0.23.1440.814@0.23.1440.814" timestamp="1585872598644" />
+    <state width="950" height="142" key="GridCell.Tab.0.bottom/0.23.1440.816@0.23.1440.816" timestamp="1585683142741" />
+    <state width="1878" height="374" key="GridCell.Tab.0.bottom/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586885072164" />
+    <state width="1398" height="231" key="GridCell.Tab.0.center" timestamp="1588109824014">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1878" height="337" key="GridCell.Tab.0.center/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586884399144" />
+    <state width="1398" height="231" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1588109824014" />
+    <state width="1398" height="197" key="GridCell.Tab.0.center/0.23.1440.812@0.23.1440.812" timestamp="1588109410314" />
+    <state width="950" height="205" key="GridCell.Tab.0.center/0.23.1440.814@0.23.1440.814" timestamp="1585872598643" />
+    <state width="950" height="142" key="GridCell.Tab.0.center/0.23.1440.816@0.23.1440.816" timestamp="1585683142738" />
+    <state width="1878" height="374" key="GridCell.Tab.0.center/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586885072162" />
+    <state width="1398" height="231" key="GridCell.Tab.0.left" timestamp="1588109824013">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1878" height="337" key="GridCell.Tab.0.left/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586884399143" />
+    <state width="1398" height="231" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1588109824013" />
+    <state width="1398" height="197" key="GridCell.Tab.0.left/0.23.1440.812@0.23.1440.812" timestamp="1588109410314" />
+    <state width="950" height="205" key="GridCell.Tab.0.left/0.23.1440.814@0.23.1440.814" timestamp="1585872598642" />
+    <state width="950" height="142" key="GridCell.Tab.0.left/0.23.1440.816@0.23.1440.816" timestamp="1585683142737" />
+    <state width="1878" height="374" key="GridCell.Tab.0.left/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586885072161" />
+    <state width="1398" height="231" key="GridCell.Tab.0.right" timestamp="1588109824015">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1878" height="337" key="GridCell.Tab.0.right/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586884399145" />
+    <state width="1398" height="231" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1588109824015" />
+    <state width="1398" height="197" key="GridCell.Tab.0.right/0.23.1440.812@0.23.1440.812" timestamp="1588109410315" />
+    <state width="950" height="205" key="GridCell.Tab.0.right/0.23.1440.814@0.23.1440.814" timestamp="1585872598644" />
+    <state width="950" height="142" key="GridCell.Tab.0.right/0.23.1440.816@0.23.1440.816" timestamp="1585683142740" />
+    <state width="1878" height="374" key="GridCell.Tab.0.right/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586885072163" />
+    <state width="1398" height="258" key="GridCell.Tab.1.bottom" timestamp="1588109154344">
+      <screen x="0" y="23" width="1440" height="812" />
+    </state>
+    <state width="605" height="258" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587671753875" />
+    <state width="1398" height="258" key="GridCell.Tab.1.bottom/0.23.1440.812@0.23.1440.812" timestamp="1588109154344" />
+    <state width="1878" height="374" key="GridCell.Tab.1.bottom/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586885072167" />
+    <state width="1398" height="258" key="GridCell.Tab.1.center" timestamp="1588109154341">
+      <screen x="0" y="23" width="1440" height="812" />
+    </state>
+    <state width="605" height="258" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1587671753874" />
+    <state width="1398" height="258" key="GridCell.Tab.1.center/0.23.1440.812@0.23.1440.812" timestamp="1588109154341" />
+    <state width="1878" height="374" key="GridCell.Tab.1.center/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586885072166" />
+    <state width="1398" height="258" key="GridCell.Tab.1.left" timestamp="1588109154340">
+      <screen x="0" y="23" width="1440" height="812" />
+    </state>
+    <state width="605" height="258" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1587671753873" />
+    <state width="1398" height="258" key="GridCell.Tab.1.left/0.23.1440.812@0.23.1440.812" timestamp="1588109154340" />
+    <state width="1878" height="374" key="GridCell.Tab.1.left/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586885072165" />
+    <state width="1398" height="258" key="GridCell.Tab.1.right" timestamp="1588109154343">
+      <screen x="0" y="23" width="1440" height="812" />
+    </state>
+    <state width="605" height="258" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1587671753874" />
+    <state width="1398" height="258" key="GridCell.Tab.1.right/0.23.1440.812@0.23.1440.812" timestamp="1588109154343" />
+    <state width="1878" height="374" key="GridCell.Tab.1.right/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1586885072167" />
+    <state x="229" y="89" key="SettingsEditor" timestamp="1585846774152">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1585846774152" />
+    <state x="208" y="23" key="SettingsEditor/0.23.1440.814@0.23.1440.814" timestamp="1585846245759" />
+    <state x="270" y="194" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1586283034688">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="270" y="194" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1440.900@0.0.1440.900" timestamp="1586283034688" />
+    <state x="264" y="82" width="670" height="676" key="search.everywhere.popup" timestamp="1585847365416">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="264" y="82" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1585847365416" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Week2MiniProject_sweep/test_sweep.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Lab4.py</url>
+          <line>43</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/aliasing.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="javascript-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CIS211$Lecture1.coverage" NAME="Lecture1 Coverage Results" MODIFIED="1585846790951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CIS211$Unittests_in_test_agenda_py.coverage" NAME="Unittests in test_agenda.py Coverage Results" MODIFIED="1586103159421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Week1Project_appt" />
+    <SUITE FILE_PATH="coverage/CIS211$Unittests_in_test_model_py.coverage" NAME="Unittests in test_model.py Coverage Results" MODIFIED="1586884462898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Week2Project_FiveTwelve" />
+    <SUITE FILE_PATH="coverage/CIS211$Lab4.coverage" NAME="Lab4 Coverage Results" MODIFIED="1587491412891" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CIS211$Lecture2.coverage" NAME="Lecture2 Coverage Results" MODIFIED="1585847964285" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CIS211$Lab2.coverage" NAME="Lab2 Coverage Results" MODIFIED="1586793586630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CIS211$Lecture4.coverage" NAME="Lecture4 Coverage Results" MODIFIED="1586448424241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CIS211$game_manager.coverage" NAME="game_manager Coverage Results" MODIFIED="1586883243766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Week2Project_FiveTwelve" />
+    <SUITE FILE_PATH="coverage/CIS211$Lab3_Shape3D.coverage" NAME="Lab3_Shape3D Coverage Results" MODIFIED="1586882601512" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CIS211$aliasing.coverage" NAME="aliasing Coverage Results" MODIFIED="1588109823987" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CIS211$Lecture3.coverage" NAME="Lecture3 Coverage Results" MODIFIED="1586277333585" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CIS211$Unittests_in_test_sweep_py.coverage" NAME="Unittests in test_sweep.py Coverage Results" MODIFIED="1586379478023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Week2MiniProject_sweep" />
+  </component>
+</project>

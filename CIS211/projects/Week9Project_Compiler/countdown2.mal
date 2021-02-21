@@ -1,0 +1,9 @@
+# Simple test of while loop ---
+# counts down from 10 to 1
+
+x = 1;
+
+while x <= 10 do
+   print x;
+   x = x + 1;
+od

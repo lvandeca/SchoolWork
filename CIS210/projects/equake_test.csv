@@ -1,0 +1,7 @@
+time,latitude,longitude,depth,mag,magType,nst,gap,dmin,rms,net,id,updated,place,type,horizontalError,depthError,magError,magNst,status,locationSource,magSource
+2019-12-31T11:22:49.734Z,-33.6142,-178.4753,10,5,mb,,114,4.732,0.52,us,us70006suy,2020-01-25T12:26:08.040Z,"245km S of L'Esperance Rock, New Zealand",earthquake,8.1,1.9,0.108,27,reviewed,us,us
+2019-12-30T17:49:59.468Z,35.6305,74.6387,24.32,5,mww,,43,2.275,0.66,us,us70006sjv,2020-01-29T21:54:08.040Z,"37km NNW of Idgah, Pakistan",earthquake,6.7,4.4,0.086,13,reviewed,us,us
+2019-12-30T17:18:59.863Z,35.6024,74.6175,30.6,5.5,mww,,41,2.242,0.74,us,us70006sj8,2020-02-20T16:15:46.436Z,"35km NW of Idgah, Pakistan",earthquake,5.7,4.5,0.093,11,reviewed,us,us
+2019-12-30T13:49:45.227Z,27.3836,56.5402,10,5.4,mb,,63,2.447,0.45,us,us70006sg8,2020-01-15T14:54:57.501Z,"33km NE of Bandar 'Abbas, Iran",earthquake,6,1.8,0.041,201,reviewed,us,us
+2019-12-30T04:11:09.987Z,27.8431,142.8263,15.9,5.2,mww,,26,0.937,0.72,us,us70006sbu,2020-01-16T04:05:45.975Z,"103km NE of Chichi-shima, Japan",earthquake,7.5,3.5,0.075,17,reviewed,us,us
+2019-12-29T18:24:41.656Z,-52.8602,11.3306,10,5.2,mww,,89,19.889,1.06,us,us70006s89,2020-01-26T15:57:59.040Z,"Southwest of Africa",earthquake,9.1,1.8,0.093,11,reviewed,us,us

@@ -1,0 +1,2 @@
+# low temperature data final exam CIS 210 W20 dates Eugene
+43,35,37,29,29,28,28,26,30,29,31,32,31,29,33,28,27,29,30,31,30
