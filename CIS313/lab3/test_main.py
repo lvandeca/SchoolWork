@@ -1,5 +1,5 @@
 from mealticket import *
-from INSERT_YOUR_LAB_HERE import *
+from lvandeca_lab3 import *
 from random import *
 
 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
     testTickets = makeTestTickets(SIZE)               # For random tickets
     # testTickets = defaultTestTickets(testValues)    # For premade tickets
-    
+
     testTree = BinarySearchTree()
 
     print("List of Tickets:", end=" ")
@@ -52,7 +52,7 @@ if __name__ == '__main__':
         if not res:
             print("SOMETHING WENT WRONG")
             break
-    
+
     if res:
         print("============ Testing Traversal Methods ============")
         print("Pre-order:", end=" ")
@@ -61,7 +61,6 @@ if __name__ == '__main__':
         print(testTree.traverse("in-order"))
         print("Post-order:", end=" ")
         print(testTree.traverse("post-order"))
-
 
     print("============ Testing Find Method ============")
     findTestVals = []
@@ -74,7 +73,7 @@ if __name__ == '__main__':
         result = testTree.find(value)
         if result is not False:
             result = True
-        print(f"Is {value} in the tree: {result}" )
+        print(f"Is {value} in the tree: {result}")
 
     print("============ Testing Delete Method ============")
     deleteID = choice(testTickets).ticketID
@@ -91,5 +90,3 @@ if __name__ == '__main__':
         print(testTree.traverse("post-order"))
     else:
         print("DELETION FAILED!\n")
-
-
