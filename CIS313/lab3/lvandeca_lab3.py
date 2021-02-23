@@ -7,6 +7,7 @@ Description: Implementation of a binary search tree for CIS 313 at University
 Notes:
         1. Provide better documentation for three functions implemented:
            delete, insert, and find.
+        2. Make sure nodes are being fully deleted for proper garbage colletion
 """
 
 
