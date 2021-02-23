@@ -72,8 +72,6 @@ class BinarySearchTree:
 
         if(uNode._parent.isSentinel()):
             self._root = vNode
-            uNode._leftChild = None
-            uNode._rightChild = None
 
         elif(uNode == uNode._parent._leftChild):
             uNode._parent._leftChild = vNode
@@ -167,32 +165,21 @@ class BinarySearchTree:
 
         if(status):
 
-            # handles case when node to be deleted has no children
-            if(node.isLeaf()):
+            if (node._leftChild.isSentinel()):
+                self._mytransplant(node, node._rightChild)
+            elif (node._rightChild.isSentinel()):
+                self._mytransplant(node, node._leftChild)
+            else:
+                treeMin = self._findMinimum(node._rightChild)
 
-                if(node.isLeftChild()):
-                    node._parent._leftChild = node._leftChild
+                if(treeMin._parent != node):
+                    self._mytransplant(treeMin, treeMin._rightChild)
+                    treeMin._rightChild = node._rightChild
+                    treeMin._rightChild._parent = treeMin
 
-                    # for garbage collection
-                    node = None
-
-                # node is right child
-                else:
-                    node._parent._rightChild = node._rightChild
-
-                    # for garbage collection
-                    node = None
-
-            # handles case when node to be deleted has one children
-            if(node.hasOnlyOneChild()):
-
-                # node is a left child
-                if(node.isLeftChild()):
-
-                    if(node.hasL)
-
-                # node is right child
-                else:
+                self._mytransplant(node, treeMin)
+                treeMin._leftChild = node._leftChild
+                treeMin._leftChild._parent = treeMin
 
         return status
 

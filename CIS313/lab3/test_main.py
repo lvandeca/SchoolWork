@@ -33,10 +33,10 @@ def makeTestTickets(size):
 
 if __name__ == '__main__':
     SIZE = 8                            # Number of nodes you want in tree
-    testValues = [6, 7, 1, 5, 3, 4]     # Premade tickets
+    testValues = [3, 2, 1, 8, 5, 4, 7, 10, 9, 12]     # Premade tickets
 
-    testTickets = makeTestTickets(SIZE)               # For random tickets
-    # testTickets = defaultTestTickets(testValues)    # For premade tickets
+    # testTickets = makeTestTickets(SIZE)               # For random tickets
+    testTickets = defaultTestTickets(testValues)    # For premade tickets
 
     testTree = BinarySearchTree()
 
@@ -76,7 +76,8 @@ if __name__ == '__main__':
         print(f"Is {value} in the tree: {result}")
 
     print("============ Testing Delete Method ============")
-    deleteID = choice(testTickets).ticketID
+    #deleteID = choice(testTickets).ticketID
+    deleteID = 8
     print(f"Deleting node {deleteID}...")
     deleteResult = testTree.delete(deleteID)
     if deleteResult:
