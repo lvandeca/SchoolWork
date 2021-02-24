@@ -376,201 +376,201 @@ class BinarySearchTree:
             self.output += str(node._key) + ", "
 
     def _mytransplant(self, uNode, vNode):
-            """
-            Description: Replaces subtree at uNode with subtree at vNode.
+        """
+        Description: Replaces subtree at uNode with subtree at vNode.
 
-            Note: See pg. 296 for description of the transplant routine.
+        Note: See pg. 296 for description of the transplant routine.
 
-            Args:
-                uNode (Node): Node at head of subtree to be replaced
-                vNode (Node): Node at head of subtree to be transplanted
-            """
-            # uNode is the root of the tree
-            if(uNode._parent.isSentinel()):
-                self._root = vNode
+        Args:
+            uNode (Node): Node at head of subtree to be replaced
+            vNode (Node): Node at head of subtree to be transplanted
+        """
+        # uNode is the root of the tree
+        if(uNode._parent.isSentinel()):
+            self._root = vNode
 
-            # uNode is either a right or a left child of a node
-            elif(uNode == uNode._parent._leftChild):  # uNode is a left child
-                uNode._parent._leftChild = vNode
+        # uNode is either a right or a left child of a node
+        elif(uNode == uNode._parent._leftChild):  # uNode is a left child
+            uNode._parent._leftChild = vNode
 
-            else:  # uNode is a right child
-                uNode._parent._rightChild = vNode
+        else:  # uNode is a right child
+            uNode._parent._rightChild = vNode
 
-            # sets parent of vNode if vNode is not a Sentinel Node
-            if(not vNode.isSentinel()):
-                vNode._parent = uNode._parent
+        # sets parent of vNode if vNode is not a Sentinel Node
+        if(not vNode.isSentinel()):
+            vNode._parent = uNode._parent
 
-        def insert(self, ticket):
-            """ 
-            Description: Inserts given MealTicket into the tree while
-                            preserving binary tree property.
-                            Returns True if successful, False otherwise. Exhibits
-                            O(log(n)) behavior since we iterate the depth of the
-                            BST which is log(n)
+    def insert(self, ticket):
+        """ 
+        Description: Inserts given MealTicket into the tree while
+                        preserving binary tree property.
+                        Returns True if successful, False otherwise. Exhibits
+                        O(log(n)) behavior since we iterate the depth of the
+                        BST which is log(n)
 
-            Args:
-                ticket (MealTicket): MealTicket to be inserted in the BST
+        Args:
+            ticket (MealTicket): MealTicket to be inserted in the BST
 
-            Returns:
-                Boolean: True is successful, False if not
-            """
+        Returns:
+            Boolean: True is successful, False if not
+        """
 
-            # status condition set if input is valid for BST
-            status = self._isValid(ticket)
+        # status condition set if input is valid for BST
+        status = self._isValid(ticket)
 
-            if(status):
-                cNode = self._root  # start at the root
-                newNode = Node(ticket)  # new Node instance
-                pNode = Sentinel()  # temp storage for parent of cNode
+        if(status):
+            cNode = self._root  # start at the root
+            newNode = Node(ticket)  # new Node instance
+            pNode = Sentinel()  # temp storage for parent of cNode
 
-                # iterate down through the depth of the tree
-                # produce O(log(n)) behavior since log(n) is the depth of the tree
-                while(not cNode.isSentinel()):  # iterate until leaf is hit
-                    pNode = cNode
+            # iterate down through the depth of the tree
+            # produce O(log(n)) behavior since log(n) is the depth of the tree
+            while(not cNode.isSentinel()):  # iterate until leaf is hit
+                pNode = cNode
 
-                    if(newNode < cNode):  # move to left subtree
-                        cNode = cNode.getLChild()
-                    else:
-                        cNode = cNode.getRChild()  # move to right subtree
-
-                # bottom node found (cNode is Sentinel())
-                # set parent of newNode to pNode
-                newNode._parent = pNode
-
-                # BST is empty, set newNode to root
-                if(pNode.isSentinel()):
-                    self._root = newNode
-
-                # not empty, set to either left or right child of pNode
-                elif(newNode < pNode):
-                    pNode._leftChild = newNode  # left child of pNode
+                if(newNode < cNode):  # move to left subtree
+                    cNode = cNode.getLChild()
                 else:
-                    pNode._rightChild = newNode  # right child of pNode
+                    cNode = cNode.getRChild()  # move to right subtree
 
-            return status
+            # bottom node found (cNode is Sentinel())
+            # set parent of newNode to pNode
+            newNode._parent = pNode
 
-        def delete(self, ticketID):
-            """
-            Description: 
-                Deletes node from tree with given ticketID;
-                restructures binary tree. Returns True if successful,
-                False otherwise
+            # BST is empty, set newNode to root
+            if(pNode.isSentinel()):
+                self._root = newNode
 
-            Notes: 
-                Case 1 includes cases when a node has only a right child as
-                well as cases when a node has no children since in both
-                scenarios node is being transplanted with its right child. 
+            # not empty, set to either left or right child of pNode
+            elif(newNode < pNode):
+                pNode._leftChild = newNode  # left child of pNode
+            else:
+                pNode._rightChild = newNode  # right child of pNode
 
-                Case 2 is when a node has only a left node which is then when
-                we transplant the node with its left child.
+        return status
 
-                Case 3 is when a node has both children, so we find its 
-                successor. A conditional then arises. 
+    def delete(self, ticketID):
+        """
+        Description: 
+            Deletes node from tree with given ticketID;
+            restructures binary tree. Returns True if successful,
+            False otherwise
 
-                    3a: If the successor's parent is the original node 
-                    (aka the right subtree of the node being deleted only has
-                    one element), then we only need to transplant the successor 
-                    with node and set new left child (lines 253-255). This is
-                    always executed to ensure that the left node is set properly,
-                    and that successor is the transplanting the deleted node.
+        Notes: 
+            Case 1 includes cases when a node has only a right child as
+            well as cases when a node has no children since in both
+            scenarios node is being transplanted with its right child. 
 
-                    3b: If the successor's parent isn't the original node then 
-                    we also need to transplant the successor with its right child
-                    and set the right child of the successor to the right child 
-                    of the node (lines 247 - 249).
+            Case 2 is when a node has only a left node which is then when
+            we transplant the node with its left child.
 
-            Args:
-                ticketID (int): ticketID of a MealTicket in BST to be deleted
+            Case 3 is when a node has both children, so we find its 
+            successor. A conditional then arises. 
 
-            Returns:
-                Boolean: returns True if ticketID is associated to a MealTicket
-                        in BST and delete is successfull, False otherwise
-            """
+                3a: If the successor's parent is the original node 
+                (aka the right subtree of the node being deleted only has
+                one element), then we only need to transplant the successor 
+                with node and set new left child (lines 253-255). This is
+                always executed to ensure that the left node is set properly,
+                and that successor is the transplanting the deleted node.
 
-            # check if Node with that key is in BST
-            node = self.find(ticketID)
-            status = True
+                3b: If the successor's parent isn't the original node then 
+                we also need to transplant the successor with its right child
+                and set the right child of the successor to the right child 
+                of the node (lines 247 - 249).
 
-            # if check returns a False then Node not found
-            if(type(node) is bool):
+        Args:
+            ticketID (int): ticketID of a MealTicket in BST to be deleted
+
+        Returns:
+            Boolean: returns True if ticketID is associated to a MealTicket
+                    in BST and delete is successfull, False otherwise
+        """
+
+        # check if Node with that key is in BST
+        node = self.find(ticketID)
+        status = True
+
+        # if check returns a False then Node not found
+        if(type(node) is bool):
+            status = False
+
+        if(status):
+
+            # Case 1 in docstring notes
+            if (node._leftChild.isSentinel()):
+                self._mytransplant(node, node._rightChild)
+
+            # Case 2 in docstring notes
+            elif (node._rightChild.isSentinel()):
+                self._mytransplant(node, node._leftChild)
+
+            # Case 3 in docstring notes: node has both children
+            else:
+
+                # find successor of node, aka min Node of right subtree
+                treeMin = self._findMinimum(node._rightChild)
+
+                # Case 3b in docstring notes
+                if(treeMin._parent != node):
+                    self._mytransplant(treeMin, treeMin._rightChild)
+                    treeMin._rightChild = node._rightChild
+                    treeMin._rightChild._parent = treeMin
+
+                # Case 3a in docstring notes, this scenario is always
+                # executed for Case 3
+                self._mytransplant(node, treeMin)
+                treeMin._leftChild = node._leftChild
+                treeMin._leftChild._parent = treeMin
+
+            # set all pointers of node deleted to None to ensure
+            # removal through garbage collection
+            node._leftChild = None
+            node._rightChild = None
+            node._parent = None
+
+        return status
+
+    def find(self, ticketID):
+        """ 
+        Description: Finds node in tree with given ticketID,
+                        returns corresponding ticket. Returns False
+                        if unsuccessful.
+
+        Args:
+            ticketID (int): ticketID of a MealTicket in BST
+
+        Returns:
+            MealTicket/Boolean: returns MealTicket if ticketID in BST, 
+                                False otherwise
+        """
+
+        # valid ticketIDs are integers > 0
+        status = ticketID > 0
+
+        if(status):
+
+            # start at the root
+            cNode = self._root
+
+            # iterate down. Stop when either ticketID is found for a Node in
+            # BST, or we have reached a leaf
+            while(not cNode.isSentinel() and ticketID != cNode._key):
+
+                # go to left or right subtree depending on comparison between
+                # key and ticketID, produces O(log(n)) behavior since we only
+                # iterate the depth of the tree
+                if(ticketID < cNode._key):
+                    cNode = cNode._leftChild  # go to left subtree
+                else:
+                    cNode = cNode._rightChild  # go to right subtree
+
+            # node found with matching key
+            if(not cNode.isSentinel()):
+                status = cNode
+
+            # node not found with that ticketID as a key
+            else:
                 status = False
 
-            if(status):
-
-                # Case 1 in docstring notes
-                if (node._leftChild.isSentinel()):
-                    self._mytransplant(node, node._rightChild)
-
-                # Case 2 in docstring notes
-                elif (node._rightChild.isSentinel()):
-                    self._mytransplant(node, node._leftChild)
-
-                # Case 3 in docstring notes: node has both children
-                else:
-
-                    # find successor of node, aka min Node of right subtree
-                    treeMin = self._findMinimum(node._rightChild)
-
-                    # Case 3b in docstring notes
-                    if(treeMin._parent != node):
-                        self._mytransplant(treeMin, treeMin._rightChild)
-                        treeMin._rightChild = node._rightChild
-                        treeMin._rightChild._parent = treeMin
-
-                    # Case 3a in docstring notes, this scenario is always
-                    # executed for Case 3
-                    self._mytransplant(node, treeMin)
-                    treeMin._leftChild = node._leftChild
-                    treeMin._leftChild._parent = treeMin
-
-                # set all pointers of node deleted to None to ensure
-                # removal through garbage collection
-                node._leftChild = None
-                node._rightChild = None
-                node._parent = None
-
-            return status
-
-        def find(self, ticketID):
-            """ 
-            Description: Finds node in tree with given ticketID,
-                            returns corresponding ticket. Returns False
-                            if unsuccessful.
-
-            Args:
-                ticketID (int): ticketID of a MealTicket in BST
-
-            Returns:
-                MealTicket/Boolean: returns MealTicket if ticketID in BST, 
-                                    False otherwise
-            """
-
-            # valid ticketIDs are integers > 0
-            status = ticketID > 0
-
-            if(status):
-
-                # start at the root
-                cNode = self._root
-
-                # iterate down. Stop when either ticketID is found for a Node in
-                # BST, or we have reached a leaf
-                while(not cNode.isSentinel() and ticketID != cNode._key):
-
-                    # go to left or right subtree depending on comparison between
-                    # key and ticketID, produces O(log(n)) behavior since we only
-                    # iterate the depth of the tree
-                    if(ticketID < cNode._key):
-                        cNode = cNode._leftChild  # go to left subtree
-                    else:
-                        cNode = cNode._rightChild  # go to right subtree
-
-                # node found with matching key
-                if(not cNode.isSentinel()):
-                    status = cNode
-
-                # node not found with that ticketID as a key
-                else:
-                    status = False
-
-            return status
+        return status
