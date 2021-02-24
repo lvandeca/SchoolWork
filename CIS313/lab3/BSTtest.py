@@ -1,14 +1,16 @@
 from mealticket import *
-from *insertyourlabhere* import *
+from lvandeca_lab3 import *
 import random
 
 
 def bstTypeNoneCheck(bst, testType):
     if type(bst) != BinarySearchTree:
-        print(f"The given BST is not a valid Binary Search Tree Type, happened in {testType} test")
+        print(
+            f"The given BST is not a valid Binary Search Tree Type, happened in {testType} test")
         return False
     elif bst._root.isSentinel():
-        print(f"The root is None or Sentinel(), check your insertion, happened in {testType} test")
+        print(
+            f"The root is None or Sentinel(), check your insertion, happened in {testType} test")
         return False
 
 
@@ -24,9 +26,11 @@ def bstPrint(bst):
     print(bst.traverse("post-order"))
     print("\n")
 
+
 def preOrderPrint(bst):
     print("Printing pre-Order")
     print(bst.traverse("pre-order"))
+
 
 def insertTest(bst, ticketList):
 
@@ -42,9 +46,10 @@ def insertTest(bst, ticketList):
     if result:
         print("Multiple Insertion test successful")
 
+
 def fixedInsertionTest():
     print("------Inserting fixed elements to see if the result is correct")
-    ids = [22,2,1,20,5,16,9,8,24]
+    ids = [22, 2, 1, 20, 5, 16, 9, 8, 24]
     tickets = generateFixedTickets(ids)
     bst = BinarySearchTree()
     for ticket in tickets:
@@ -55,6 +60,7 @@ def fixedInsertionTest():
     else:
         print("Insertion test successful, insertions are correct NICE!\n")
 
+
 def findTest(bst, ticketList):
 
     # if not bstTypeNoneCheck(bst, "find"):
@@ -63,10 +69,12 @@ def findTest(bst, ticketList):
     topNumber = 31
     for ticket in ticketList[5:]:
         print(f"Testing to find {ticket.ticketID}")
-        print(f"Result: {bst.find(ticket.ticketID)._key}, expected: {ticket.ticketID}\n")
+        print(
+            f"Result: {bst.find(ticket.ticketID)._key}, expected: {ticket.ticketID}\n")
         print(f"Testing to find {topNumber}, nonexistent node")
         print(f"Result: {bst.find(topNumber)}, expected: False\n")
         topNumber += 1
+
 
 def deleteTest(bst, ticketList):
     print("------Delete test, trying to delete half of the inserted tickets, and that many nonexistent tickets")
@@ -106,6 +114,7 @@ def deleteTest(bst, ticketList):
     if noError:
         print(f"Delete test is successful")
 
+
 def deleteTestWithoutComment(bst, ticketList):
 
     topNumber = 31
@@ -130,6 +139,7 @@ def deleteTestWithoutComment(bst, ticketList):
 
     return noError
 
+
 def aLotofDeleteTests():
 
     print("------This is the bossfight, 2000 tests to see if any errors happen while deleting,\n this "
@@ -145,7 +155,7 @@ def aLotofDeleteTests():
 
         if not noError:
             #print(f"Mistake in deleting elements in the tree:")
-            #preOrderPrint(tree)
+            # preOrderPrint(tree)
             allCorrect = False
 
     if allCorrect:
@@ -154,12 +164,14 @@ def aLotofDeleteTests():
     else:
         print("Error happened with deletion")
 
+
 def insertTickets(bst, tickets):
     for ticket in tickets:
         bst.insert(ticket)
 
+
 def generateUniqueTickets():
-    ticketIDList = [5,3,7,4,2,1,10,8,12]
+    ticketIDList = [5, 3, 7, 4, 2, 1, 10, 8, 12]
     mealtickets = []
     randomTicketList = random.sample(range(1, 30), 10)
     for id in randomTicketList:
@@ -170,6 +182,7 @@ def generateUniqueTickets():
         ticket.addItem(("Item 3", round(uniform(0, 30), 2)))
         mealtickets.append(ticket)
     return mealtickets
+
 
 def generateFixedTickets(list):
     mealtickets = []
@@ -183,6 +196,7 @@ def generateFixedTickets(list):
         mealtickets.append(ticket)
     return mealtickets
 
+
 def emptyInsertTest():
     print("------Empty Insert Test, inserting a ticket into empty BST")
     ids = [10]
@@ -193,6 +207,7 @@ def emptyInsertTest():
         print("Empty Insert Successful\n")
     else:
         print("Empty insert Failed\n")
+
 
 def rootDeleteTest():
     print("------Root delete Test, deleting the root which is the single element")
@@ -207,14 +222,15 @@ def rootDeleteTest():
     else:
         print("Root delete Failed\n")
 
+
 def fixedDeleteTest():
     print("------Fixed BST Delete test, testing 3 types of deletion")
-    idList = [22,2,1,20,5,16,9,8,24]
+    idList = [22, 2, 1, 20, 5, 16, 9, 8, 24]
     bst = BinarySearchTree()
     tickets = generateFixedTickets(idList)
     result = True
     for ticket in tickets:
-        #print(ticket.ticketID)
+        # print(ticket.ticketID)
         bst.insert(ticket)
 
     bst.delete(1)
@@ -231,7 +247,6 @@ def fixedDeleteTest():
     else:
         print("Deletion of a node with single child SUCCESS")
 
-
     ids = [1]
     ticket = generateFixedTickets(ids)
     bst.insert(ticket[0])
@@ -247,7 +262,6 @@ def fixedDeleteTest():
         print("Delete Type tests Successful\n")
     else:
         print("Delete type tests Failed\n")
-
 
 
 def main():
@@ -272,12 +286,6 @@ def main():
     deleteTest(bst, fixedList)
     print("\n")
     aLotofDeleteTests()
-
-
-
-
-
-
 
 
 main()
