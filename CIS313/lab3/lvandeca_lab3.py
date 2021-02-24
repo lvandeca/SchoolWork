@@ -229,9 +229,9 @@ class Node():
     def isRoot(self):
         """ Returns true if the current node is the root"""
         return self._parent.isSentinel()
-# ===============================================================================
+# ==============================================================================
 
-# ================================ BST Class ====================================
+# ================================ BST Class ===================================
 
 
 class BinarySearchTree:
@@ -239,6 +239,8 @@ class BinarySearchTree:
     Description: A Binary Search Tree (BST).
     Note: Algorithms for the BST can be found in ch. 12 of the book.
     """
+
+# ============================== Jared's Methods ===============================
 
     def __init__(self):
         """ The constructor for our BST """
@@ -374,6 +376,8 @@ class BinarySearchTree:
             self.postorder(node.getLChild())
             self.postorder(node.getRChild())
             self.output += str(node._key) + ", "
+
+# =========================== Luke Vandecasteele Methods =======================
 
     def _mytransplant(self, uNode, vNode):
         """
