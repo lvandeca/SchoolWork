@@ -1,0 +1,206 @@
+1. Considering a 32B direct-mapped cache with 8B blocks and 4 sets for an 8-bit architecture (i.e., 256 bytes of memory). 
+
+For each of the following memory addresses show the tag, set , offset, whether it resulted in hit or miss, and the 
+state of all valid lines in the cache following the access.
+
+
+    ## cache structure
+    set v tag data
+    00  0 000 empty
+    01  0 000 empty
+    10  0 000 empty
+    11  0 000 empty
+
+    offset -> address & 0x07
+    block address -> address >> 3
+    set -> (address >> 3) & 0x03
+    tag -> address >> 5
+
+    tag set offset
+    000 00  000
+
+    a) 0x02
+
+        0b 0000 0010
+
+        tag => 000
+        set => 00
+        offset => 010
+
+        cold miss
+
+        valid cache:
+        00 1 000 M[0-7]
+    
+    b) 0x24
+
+        0b 0010 0100
+
+        tag => 001
+        set => 00
+        offset => 100
+
+        conflict miss
+
+        valid cache:
+        00 1 001 M[32-39]
+
+    c) 0x07
+
+        0b 0000 0111
+
+        tag => 000
+        set => 00
+        offset => 111
+
+        conflict miss
+        
+        valid cache:
+        00 1 000 M[0-7]
+
+    d) 0x04
+
+        0b 0000 0100
+
+        tag => 000
+        set => 00
+        offset => 100
+
+        hit!
+
+        valid cache:
+        00 1 000 M[0-7]
+
+    e) 0x22
+
+        0b 0010 0010
+
+        tag => 001
+        set => 00
+        offset => 010
+
+        conflict miss
+        
+        valid cache:
+        00 1 001 M[32-39]
+
+    f) 0x06
+
+        0b 0000 0110
+
+        tag => 000
+        set => 00
+        offset => 110
+
+        conflict miss
+        
+        valid cache:
+        00 1 000 M[0-7]
+
+    g) 0x02
+
+        0b 0000 0010
+
+        tag => 000
+        set => 00
+        offset => 010
+
+        hit!
+
+        valide cache:
+        00 1 00 M[0-7]
+
+
+2. Considering a 64B direct-mapped cache with 16B blocks and 4 sets for an 8-bit architecture (i.e., 256 bytes of memory). 
+
+For each of the following memory addresses show the tag, set , offset, whether it resulted in hit or miss, and the state 
+of all valid lines in the cache following the access.
+
+
+    ## cache structure
+    set v tag data
+    00  0 00  empty
+    01  0 00  empty
+    10  0 00  empty
+    11  0 00  empty
+
+    offset -> address & 0x0F
+    set -> (address >> 4) & 0x03
+    tag -> address >> 6
+    block address -> address >> 4
+
+    tag set offset
+    00  00  000
+
+    a) 0x00
+
+        tag set offset
+        00  00  0000
+
+        cold miss
+
+        valid cache:
+        00 1 00 M[0-15]
+
+    b) 0x46
+
+        tag set offset
+        01  00  0110
+
+        conflict miss
+
+        valid cache:
+        00 1 01 M[64-79]
+
+    c) 0x06
+
+        tag set offset
+        00  00  0110
+
+        conflict miss
+
+        valid cache:
+        00 1 00 M[0-15]
+        
+    d) 0x40
+
+        tag set offset
+        01  00  0000
+
+        conflict miss
+
+        valid cache:
+        00 1 01 M[64-79]
+
+    e) 0x12
+
+        tag set offset
+        00  01  0010
+
+        cold miss
+
+        valid cache:
+        00 1 01 M[64-79]    #from the previous question call
+        01 1 00 M[16-31]
+
+    f) 0x0c
+
+        tag set offset
+        00  00  1100
+
+        conflict miss
+
+        valid cache:
+        00 1 00 M[0-15]
+        01 1 00 M[16-31]
+
+    g) 0x00
+
+        tag set offset
+        00  00  0000
+
+        hit!
+
+        valid cache:
+        00 1 00 M[0-15]
+        01 1 00 M[16-31]
