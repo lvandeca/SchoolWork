@@ -51,11 +51,13 @@ Acquired Skills
 Upon successful completion of the course, students will have acquired the
 following essential skills:
 
-be able to implement the introduced data structures and their operations using a
-programming language (e.g., Python); be able to design efficient algorithms for
-some basic problems in computer science using the introduced data structures,
-and implement them using a programming language; be able to run the implemented
-programs in computers and debug the programs if necessary.
+- be able to implement the introduced data structures and their operations using
+  a programming language (e.g., Python); 
+- be able to design efficient algorithms for some basic problems in computer
+  science using the introduced data structures, and implement them using a
+  programming language; 
+- be able to run the implemented programs in computers and debug the programs if
+  necessary.
 
 
 Course website: https://classes.cs.uoregon.edu/21W/cis313Links to an external
