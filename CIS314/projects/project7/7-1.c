@@ -1,3 +1,7 @@
+/*
+
+*/
+
 #include <stdio.h>
 
 unsigned int getOffset(unsigned int address)
@@ -19,7 +23,8 @@ int main()
 {
     printf("0x12345678\n");
     printf("Offset: %x - Tag: %x - Set: %x\n", getOffset(0x12345678),
-           getSet(0x12345678),
-           getTag(0x12345678));
+           getTag(0x12345678), getSet(0x12345678));
     printf("0x87654321\n");
+    printf("Offset: %x - Tag: %x - Set: %x\n", getOffset(0x87654321),
+            getTag(0x87654321), getSet(0x87654321));
 }
