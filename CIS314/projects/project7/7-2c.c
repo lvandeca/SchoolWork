@@ -7,6 +7,7 @@ Description: Optimizing code by analyzing memory lookups and limiting memory
              access by ensuring that larger blocks are available in our cache 
              for accessing.
 */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -83,6 +84,7 @@ void free2DArray(struct ColorPoint **points, int n)
 
 int main()
 {
+    //creation of struct ColorPoint. Allocates memory on the heap
     struct ColorPoint **points = create2DArray(2048);
     clock_t start;
     clock_t end;
@@ -106,13 +108,14 @@ int main()
     printf("f() sum: %d ", sum);
     printf("time g(): %f\n", seconds);
 
+    //free the allocated memory for the struct
     free2DArray(points, 2048);
 
     /*
-    The reason that functin g() is so much faster is simply because we are
-    making less memory access. As we have learned, accessing our cache is much
+    The reason that function g() is so much faster is simply because we are
+    making less memory accesses. As we have learned, accessing our cache is much
     faster than going into memory and finding an element. Therefore, since we
-    have fewer misses in the cache, then our code accessing memory less, and
+    have fewer misses in the cache, then our code is accessing memory less, and
     becomes faster!
     */
 }

@@ -1,0 +1,69 @@
+Luke Vandecasteele      Date: 3/4/2021      CIS 314
+
+Homework 7: Solution Document
+
+Question 2:
+
+(a) The miss rate for the function long f() is 25%, or 1/4. In order to see
+    this, we need to see how the struct ColorPoint **points gets loaded into our
+    cache from memory. If we look at the inner line of the code, our first line:
+
+        sum += points[j][i].a;
+    
+    clearly results in a miss the first time through, since the cache is empty.
+    However the next three lines:
+
+        sum += points[j][i].r;
+        sum += points[j][i].g;
+        sum += points[j][i].b;
+
+    will all be hits. We know this since our struct ColorPoint consists of 4
+    elements, all of which are type long, and the sizeof(long) == 8, so the
+    bytes in memory that each points element takes up is 32B. Hence, with a 64B
+    cache, the entire element of points (i.e. points[j][i]) will be loaded into
+    our cache, and thus will all be hits. This gives us:
+
+        (1 miss) / ((1 miss) + (3 hits)) = 1/4 miss rate
+
+    The next time through our loop however, the same first line will result in a
+    miss. This is because our cache is only 64B, and when we increment j in the
+    inner loop, we are not moving to the next 32B in memory to access the next
+    struct in the array points. Instead, we are moving down to the next row in
+    the array points, and thus are skipping to a new section of memory which is
+    not loaded into our cache. However the next 3 calls will again be hits,
+    since the block is loaded into the cache, again resulting in a 1/4 miss
+    rate.
+    
+    As we can see, this patter will continue for the remaining 32 iterations
+    through the inner loop, and therefore will give us a total miss rate of 1/4.
+
+(b) The miss rate for the function long g() will be 1/8. This can be clearly
+    seen using the data from our answer in part (a). Similarly to part (a), the
+    first time through the inner loop we will have a miss for:
+
+        sum += points[i][j].a;
+
+    But the remaining 3 calls in the loop will be hits, because of the 32B now
+    loaded into our cache from the first call. This gives a 1/4 hit rate.
+
+    However, the second time through the loop is where things change in function
+    g(). When we call the same first line as listed above;
+
+        sum += points[i][j+1].a;
+
+    We will get a hit! Why though? The reason is because our cache is 64B, and
+    therefore by accessing the j+1 element in our array, we are simply moving to
+    the next column, or the next sequential element in memory. This next element
+    will be in our cache because our struct ColorPoint is only 32B, and our
+    cache is 64B. Therefore, our very first call in the inner loop will load
+    both the first and the second elements in the array. Thus, our second time
+    looping through the array will give us no misses, and all hits or a 0/4 miss
+    rate. If we add these together we get a 1/8 miss rate.
+
+    We can see that by analyzing two iterations through the inner loop, we have
+    already established a pattern for the remaining iterations since our cache can
+    only hold 2 structs. Therefore, the 3rd time through, we will have 1 miss as
+    we access the 3rd element in our array (which does not fit in our cache),
+    which will then be followed by 7 hits in exactly the same manner as outlined
+    before. This again gives us a 1/8 miss rate. Therefore, the total miss rate
+    for the function g() is 1/8.
