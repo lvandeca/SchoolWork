@@ -5,17 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "gcc - Build and debug active file",
-            "type": "cppdbg",
+            "name": "Python: Current File",
+            "type": "python",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "console": "externalTerminal",
-            "MIMode": "lldb",
-            "preLaunchTask": "C/C++: gcc build active file"
+            "program": "${file}",
+            "console": "integratedTerminal"
         }
     ]
 }
