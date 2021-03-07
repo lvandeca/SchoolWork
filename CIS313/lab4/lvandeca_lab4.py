@@ -26,6 +26,9 @@ class Sentinel():
     def __str__(self):
         return "Sentinel()"
 
+    def __repr__(self):
+        return "Sentinel()"
+
     def isSentinel(self):
         """ This method makes it easy to check if a given node is a Sentinel"""
         return True
@@ -642,7 +645,6 @@ class RedBlackTree:
         if(node.isSentinel()):
             return True, blackHeight
 
-
         elif(node._color == "red"):
 
             if(left._color == "black" and right._color == "black"):
@@ -656,7 +658,7 @@ class RedBlackTree:
                 ret = f"Both children of node: {nK} are not black--"
                 ret += f"Right child: ({rK}, {rC}) Left child: ({lK}, {lC})"
                 return ret, blackHeight
-        
+
         leftCheck = self.check(left, 0)
         rightCheck = self.check(right, 0)
 
@@ -664,8 +666,9 @@ class RedBlackTree:
             ret = "Number of black nodes unequal: "
             ret += f"Left child: {left} height: {leftCheck[1]} -- "
             ret += f"Right child: {right} height: {rightCheck[1]}"
-            return ret, blackHeight 
+            return ret, blackHeight
 
+        blackHeight += leftCheck[1]
         subCheck = (type(leftCheck[0]) != str and type(rightCheck[0]) != str)
         if(subCheck):
             status = True, blackHeight
@@ -675,15 +678,3 @@ class RedBlackTree:
             return rightCheck[0], blackHeight
 
         return status
-
-
-if(__name__ == "__main__"):
-    # Write a main to test your code. Share on Piazza if you wanna ^,^
-    myTree = RedBlackTree()
-    tickets = generateMealTickets(5)
-    for thing in tickets:
-        myTree.insert(thing)
-
-    repr(myTree)
-
-    print("test complete bitch")
