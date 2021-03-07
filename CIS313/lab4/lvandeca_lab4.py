@@ -23,6 +23,9 @@ class Sentinel():
         self._parent = None
         self._color = "black"
 
+    def __str__(self):
+        return "Sentinel()"
+
     def isSentinel(self):
         """ This method makes it easy to check if a given node is a Sentinel"""
         return True
@@ -45,11 +48,7 @@ class RBNode():
 
     def __str__(self):
         """ Returns a string rep of the node (for debugging ^,^) """
-        returnValue = "Node: {}\n".format(self._key, self._color)
-        returnValue += "Parent: {}\n".format(self._parent._key)
-        returnValue += "Left Child: {}\n".format(self._leftChild._key)
-        returnValue += "Right Child: {}\n".format(self._rightChild._key)
-        return returnValue
+        return "key: {}, color: {}".format(self._key, self._color)
 
     def __repr__(self):
         returnValue = "RBNode("
@@ -258,6 +257,9 @@ class RedBlackTree:
         returnValue += "root: {}, ".format(repr(self._root))
         returnValue += "preorder: {})".format(self.traverse("repr pre-order"))
         return returnValue
+
+    def __str__(self):
+        return self.traverse("in-order")
 
     def _isRoot(self, node):
         """
@@ -625,6 +627,54 @@ class RedBlackTree:
 
         nodeLeft._rightChild = currentNode
         currentNode._parent = nodeLeft
+
+    def check(self, node, blackHeight):
+
+        status = True, blackHeight
+        left = node._leftChild
+        right = node._rightChild
+        if(self._root._color != "black"):
+            return "Root node is not black", blackHeight
+
+        if(node._color == "black"):
+            blackHeight += 1
+
+        if(node.isSentinel()):
+            return True, blackHeight
+
+
+        elif(node._color == "red"):
+
+            if(left._color == "black" and right._color == "black"):
+                status = True, blackHeight
+            else:
+                nK = node._key
+                rK = right._key
+                rC = right._color
+                lK = left._key
+                lC = left._color
+                ret = f"Both children of node: {nK} are not black--"
+                ret += f"Right child: ({rK}, {rC}) Left child: ({lK}, {lC})"
+                return ret, blackHeight
+        
+        leftCheck = self.check(left, 0)
+        rightCheck = self.check(right, 0)
+
+        if(leftCheck[1] != rightCheck[1]):
+            ret = "Number of black nodes unequal: "
+            ret += f"Left child: {left} height: {leftCheck[1]} -- "
+            ret += f"Right child: {right} height: {rightCheck[1]}"
+            return ret, blackHeight 
+
+        subCheck = (type(leftCheck[0]) != str and type(rightCheck[0]) != str)
+        if(subCheck):
+            status = True, blackHeight
+        elif(type(leftCheck[0]) != bool):
+            return leftCheck[0], blackHeight
+        else:
+            return rightCheck[0], blackHeight
+
+        return status
 
 
 if(__name__ == "__main__"):
