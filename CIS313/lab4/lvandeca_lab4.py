@@ -1,8 +1,8 @@
 """
 Lab 4 - Red Black Tree
-Author: <your name here>, Jared Hall
-Date: <the date>
-Description: <simple description>
+Author: Luke Vandecasteele, Jared Hall
+Date: 3/6/2021 Last Modified: 3/7/2021
+Description: Implementation of a Red-Black Tree for MealTickets
 Notes:
     1. <Anything you think I should know while grading>
 """
