@@ -1,6 +1,10 @@
+from __future__ import print_function
+from math import *
 from lvandeca_lab4 import *
 from mealticket import *
 from random import *
+import sys
+import time
 
 
 def randomTestTickets(size):
@@ -32,32 +36,45 @@ def testTreeInsert(testTickets, testTree):
     return insert
 
 
-def formatPrint(testNum):
-    printTest = testNum + 1
-    testPrint = "Checking tree {}".format(printTest)
-    if(printTest < 10):
-        testPrint += "........."
-    elif(printTest < 100):
-        testPrint += "........"
-    elif(printTest < 1000):
-        testPrint += "......."
+def myPercent(percent):
+    p = floor(percent * 100)
+    ret = f"{p}%"
+    ret2 = 80
+    if(p < 10):
+        ret2 -= 2
+    elif(p < 100):
+        ret2 -= 3
     else:
-        testPrint += "......"
+        ret2 -= 4
 
-    return testPrint
+    return ret, ret2
 
 
-def checkTree(testTree, testPrint):
+def output(test, testCases):
+    percent = test / testCases
+    ofEighty = myPercent(percent)
+
+    doneNum = floor(percent * ofEighty[1])
+    done = "#"*(doneNum)
+    todo = '-'*(ofEighty[1] - doneNum)
+    s = "{}".format(done + todo + ofEighty[0])
+    if(not todo):
+        s += '\n'
+    if(test > 1):
+        s = '\r' + s
+    sys.stdout.write(s)
+    sys.stdout.flush()
+
+
+def checkTree(testTree, test, testCases):
     RedBlackProperty = True
+    printTest = test + 1
     check = testTree.check(testTree._root, 0)
     if((type(check[0]) == bool)):
-        testPrint += "Passed"
-        print(testPrint)
-        pass
+        output(printTest, testCases)
     else:
-        testPrint += "Failed"
-        print(testPrint)
-        print("     Test Failed: {}".format(testTree))
+        print("Failed Test #{}".format(printTest))
+        print("     Tree Failed: {}".format(testTree))
         print(
             "     Red-Black Tree Property Violated: {}".format(check[0]))
         RedBlackProperty = False
@@ -67,7 +84,6 @@ def checkTree(testTree, testPrint):
 
 def testInsert(testCases, treeSize):
     print("Testing insert")
-    print()
     for test in range(testCases):
 
         testTickets = randomTestTickets(treeSize)
@@ -78,18 +94,16 @@ def testInsert(testCases, treeSize):
         insertSuccess = testTreeInsert(testTickets, testTree)
         if(insertSuccess):
 
-            # formating print output for user readability
-            testPrint = formatPrint(test)
             # check that the tree conforms to Red-Black properties
-            check = checkTree(testTree, testPrint)
+            check = checkTree(testTree, test, testCases)
 
             if(not check):
                 break
 
-    if(check):
-        print()
-        print("All insert tests passed")
-        print()
+    if(not check):
+        return False
+    else:
+        return True
 
 
 def main():
@@ -99,7 +113,10 @@ def main():
     treeSize = 100
 
     # tests
-    testInsert(testCases, treeSize)
+    if(not testInsert(testCases, treeSize)):
+        return
+    # if(not testDelete(testCases, treeSize)):
+    #    return
 
 
 if __name__ == "__main__":
