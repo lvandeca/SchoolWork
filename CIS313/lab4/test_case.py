@@ -45,10 +45,16 @@ def displayNodes(node):
         displayNodes(node.getRChild())
 
 
+def myChoice(ticketID, testTickets):
+    for ticket in testTickets:
+        if ticket.ticketID == ticketID:
+            return ticket
+
+
 def main():
     SIZE = 10                             # Number of nodes you want in tree
     # Premade tickets to test specific cases
-    testValues = [1, 27, 17]
+    testValues = [8, 7, 9, 3, 10, 2, 6, 16, 26, 17]
 
     # Only uncomment the one you want to use
     testTickets = randomTestTickets(SIZE)             # For random tickets
@@ -92,17 +98,22 @@ def main():
             print(f"Is {value} in the tree: {result}")
 
         print("============ Testing Delete Method ============")
+        i = 0
         while len(testTickets) > 0:
+            # deleteOrder = [10, 6, 17, 3, 7, 2, 26, 16, 9, 8]          #
+            # deleteTicket = myChoice(deleteOrder[i], testTickets)
             deleteTicket = choice(testTickets)
             testTickets.remove(deleteTicket)
             deleteID = deleteTicket.ticketID
             print(f"Deleting node {deleteID}...")
+            deleteNode = testTree.findNode(deleteID)
             deleteResult = testTree.delete(deleteID)
             if deleteResult:
                 print("DELETION SUCCESSFUL!\n")
             else:
                 print("DELETION FAILED!\n")
                 break
+            i += 1
 
 
 if __name__ == '__main__':
