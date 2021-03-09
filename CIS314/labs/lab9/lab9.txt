@@ -1,0 +1,218 @@
+1 Consider a 32B 2-way set associative cache with 2 sets and 8B blocks for an
+8-bit architecture (i.e., 256 bytes of memory). Use the Least Recently Used
+(LRU) eviction policy if evictions are necessary. For each of the following
+addresses, show the tag, set, offset, whether it resulted in hit or miss, and
+the state of all valid lines in the cache following the access.
+
+Direct Mapped Cache
+
+tag set offset
+xxx xx  xxx
+
+Set associative cache
+
+tag  set offset
+xxxx x   xxx
+
+
+a) 0x02
+	
+	0b 0000 0010
+
+	tag  set offset
+	0000 0   010
+
+	cold miss
+
+	set v tag  data
+	0   1 0000 M[0-7]
+
+b) 0x24
+
+	0b 0010 0100
+
+	tag  set offset
+	0010 0   100
+
+	cold miss
+
+	set v tag  data
+	0   1 0000 M[0-7]
+	0   1 0010 M[32-39]
+
+c) 0x07
+
+	0b 0000 0111
+
+	tag  set offset
+	0000 0   111
+
+	hit!
+
+	set v tag  data
+	0   1 0000 M[0-7]
+	0   1 0010 M[32-39]
+
+d) 0x04
+
+	0b 0000 0100
+
+	tag  set offset
+	0000 0   100
+
+	hit!
+
+	set v tag  data
+	0   1 0000 M[0-7]
+	0   1 0010 M[32-39]
+
+e) 0x22
+
+	0b 0010 0010
+
+	tag  set offset
+	0010 0   010
+
+	hit!
+
+	set v tag  data
+	0   1 0000 M[0-7]
+	0   1 0010 M[32-39]
+
+f) 0x06
+
+	0b 0000 0110
+
+	tag  set offset
+	0000 0   110
+
+	hit!
+
+	set v tag  data
+	0   1 0000 M[0-7]
+	0   1 0010 M[32-39]
+
+g) 0x02
+
+	0b 0000 0010
+
+	tag  set offset
+	0000 0   010
+
+	hit!
+
+	set v tag  data
+	0   1 0000 M[0-7]
+	0   1 0010 M[32-39]
+
+
+2. Consider a 64B 2-way set associative cache with 2 sets and 16B blocks for an
+8-bit architecture (i.e., 256 bytes of memory). Use the Least Recently Used
+(LRU) eviction policy if evictions are necessary. For each of the following
+addresses, show the tag, set, offset, whether it resulted in hit or miss, and
+the state of all valid lines in the cache following the access.
+
+Direct Mapped:
+
+tag set offset
+xx  xx  xxxx
+
+Set associative:
+
+tag set offset
+xxx x   xxxx
+
+
+a) 0x00
+
+	0b 0000 0000
+
+	tag set offset
+	000 0   0000
+
+	cold miss
+
+	set v tag data
+	0   1 000 M[0-15]
+
+b) 0x46
+
+	0b 0100 0110
+
+	tag set offset
+	010 0   0110
+
+	cold miss
+
+	set v tag data
+	0   1 000 M[0-15]
+	0   1 010 M[64-79]
+
+c) 0x06
+
+	0b 0000 0110
+
+	tag set offset
+	000 0   0110
+
+	hit!
+
+	set v tag data
+	0   1 000 M[0-15]
+	0   1 010 M[64-79]
+d) 0x40
+
+	0b 0100 0000
+
+	tag set offset
+	010 0   0000
+
+	hit!
+
+	set v tag data
+	0   1 000 M[0-15]
+	0   1 010 M[64-79]
+
+e) 0x12
+
+	0b 0001 0010
+
+	tag set offset
+	000 1   0010
+
+	cold miss
+
+	set v tag data
+	0   1 000 M[0-15]
+	0   1 010 M[64-79]
+	1   1 000 M[16-31]
+
+f) 0x0c
+
+	0b 0000 1100
+
+	tag set offset
+	000 0   1100
+
+	hit!
+
+	set v tag data
+	0   1 000 M[0-15]
+	0   1 010 M[64-79]
+	1   1 000 M[16-31]
+
+g) 0x00
+
+	0b 0000 0000
+
+	tag set offset
+	000 0   0000
+
+	hit!
+
+	set v tag data
+	0   1 000 M[0-15]
+	0   1 010 M[64-79]
+	1   1 000 M[16-31]
+
+url for lab 9 https://courses.cs.washington.edu/courses/cse351/cachesim/

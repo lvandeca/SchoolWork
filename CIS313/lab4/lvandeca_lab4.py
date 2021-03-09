@@ -8,7 +8,7 @@ Notes:
 """
 from mealticket import *
 
-# ============================== Aux Classes ====================================
+# ============================== Aux Classes ===================================
 
 
 class Sentinel():
@@ -40,6 +40,7 @@ class RBNode():
     def __init__(self, ticket):
         """
         Description: The constructor for the Node class.
+
         Inputs: A valid MealTicket (input validation should be done by insert)
         """
         self._parent = Sentinel()
@@ -98,6 +99,7 @@ class RBNode():
     def setParent(self, node):
         """
         Description: Mutator method. Sets the parent reference.
+
         Input: A Node() reference.
         """
         self._parent = node
@@ -105,6 +107,7 @@ class RBNode():
     def setLChild(self, node):
         """
         Description: Mutator method. Sets the lchild reference.
+
         Input: A Node() reference.
         """
         self._leftChild = node
@@ -112,6 +115,7 @@ class RBNode():
     def setRChild(self, node):
         """
         Description: Mutator method. Sets the rchild reference.
+
         Input: A Node() reference.
         """
         self._rightChild = node
@@ -127,6 +131,7 @@ class RBNode():
         """
         Description: Overloads the > operator to allow direct comparison of
                      nodes. Now we can do node1 > node2.
+
         Input: Another instance of the node class.
         """
         returnValue = False
@@ -138,6 +143,7 @@ class RBNode():
         """
         Description: Overloads the < operator to allow direct comparison of
                      nodes. Now we can do node1 < node2.
+
         Input: Another instance of the node class.
         """
         returnValue = False
@@ -149,6 +155,7 @@ class RBNode():
         """
         Description: Overloads the == operator to allow direct comparison of
                      nodes. Now we can do node1 == node2.
+
         Input: Another instance of the node class.
         """
         returnValue = False
@@ -160,6 +167,7 @@ class RBNode():
         """
         Description: Overloads the != operator to allow direct comparison of
                      nodes. Now we can do node1 != node2.
+
         Input: Another instance of the node class.
         """
         returnValue = False
@@ -171,6 +179,7 @@ class RBNode():
         """
         Description: Overloads the <= operator to allow direct comparison of
                      nodes. Now we can do node1 <= node2.
+
         Input: Another instance of the node class.
         """
         returnValue = False
@@ -182,6 +191,7 @@ class RBNode():
         """
         Description: Overloads the >= operator to allow direct comparison of
                      nodes. Now we can do node1 >= node2.
+
         Input: Another instance of the node class.
         """
         returnValue = False
@@ -192,8 +202,8 @@ class RBNode():
     # Some helper methods to make things easy in the BST
     def hasLeftChild(self):
         """
-        Description: This method returns true if the current node
-                     has a left child
+        Description: This method returns true if the current node has a left
+                     child
         """
         returnValue = False
         cond1 = not self._leftChild.isSentinel()
@@ -203,8 +213,8 @@ class RBNode():
         return returnValue
 
     def hasRightChild(self):
-        """ This method returns true|false depending on if the current
-            node has a right child or not."""
+        """ This method returns true|false depending on if the current node has
+            a right child or not."""
         returnValue = False
         cond1 = not self._rightChild.isSentinel()
         cond2 = self._rightChild._parent is self
@@ -242,7 +252,7 @@ class RBNode():
         cond2 = self._parent._rightChild is self
         cond3 = self._parent._leftChild is not self
         return cond1 and cond2 and cond3
-# ===============================================================================
+# ==============================================================================
 
 
 class RedBlackTree:
@@ -280,18 +290,20 @@ class RedBlackTree:
         """
         Description: A method for checking if the given ticket is a valid
                      mealticket.
+
         Inputs: Some object in the variable ticket.
+
         Outputs: Boolean (True|False) depending on if it is a valid mealticket.
         """
         return type(ticket) == MealTicket
 
     def _transplantR(self, cNode):
         """
-        Description: This transplant attaches the currentNodes right child
-                     to the current nodes parent.
-        Notes:
-                1. Do not call this method when cNode is the root.
-                2. Don't forget to handle the cNodes references in your func.
+        Description: This transplant attaches the currentNodes right child to
+                     the current nodes parent.
+
+        Notes: 1. Do not call this method when cNode is the root. 2. Don't
+                forget to handle the cNodes references in your func.
         """
         parent = cNode.getParent()
         child = cNode.getRChild()
@@ -304,11 +316,11 @@ class RedBlackTree:
 
     def _transplantL(self, cNode):
         """
-        Description: This transplant attaches the currentNodes right child
-                     to the current nodes parent.
-        Notes:
-                1. Do not call this method when cNode is the root.
-                2. Don't forget to handle the cNodes references in your func.
+        Description: This transplant attaches the currentNodes right child to
+                     the current nodes parent.
+
+        Notes: 1. Do not call this method when cNode is the root. 2. Don't
+                forget to handle the cNodes references in your func.
         """
         parent = cNode.getParent()
         child = cNode.getLChild()
@@ -321,8 +333,8 @@ class RedBlackTree:
 
     def traverse(self, mode):
         """
-        Description: The traverse method returns a string rep
-                     of the tree according to the specified mode
+        Description: The traverse method returns a string rep of the tree
+                     according to the specified mode
         """
         self.output = ""
         if(type(mode) == str):
@@ -378,7 +390,9 @@ class RedBlackTree:
     def _findMinimum(self, node):
         """
         Description: Finds the minimum child of a tree when given a node.
+
         Inputs: A node from the BST.
+
         Outputs: The minumum node from the sub-tree (e.g the left-most child).
         """
         returnValue = False
@@ -390,8 +404,8 @@ class RedBlackTree:
 
     def _findSuccessor(self, node):
         """
-        Description: Given a node, returns the successor of that node,
-                     or False if there is no successor.
+        Description: Given a node, returns the successor of that node, or False
+                     if there is no successor.
 
         """
         succ = False
@@ -410,13 +424,13 @@ class RedBlackTree:
                     succ = succ.getParent()
         return succ
 
-    # =========================== Manditory Methods =============================
+    # =========================== Manditory Methods ============================
     # You write these. I will update with BST solution on saturday.
     def find(self, ticketID):
-        """ Hints: This method returns either a stored mealticket or False
-                   just like in the BST lab. Start at the root then make
-                   your way to the RBNode whose ticketID matches the input.
-                   Then return the value of that node.
+        """ Hints: This method returns either a stored mealticket or False just
+                   like in the BST lab. Start at the root then make your way to
+                   the RBNode whose ticketID matches the input. Then return the
+                   value of that node.
         """
         ret = False
         if(type(ticketID) == int and ticketID > 0):
@@ -432,8 +446,8 @@ class RedBlackTree:
         return ret
 
     def delete(self, ticketID):
-        """ The delete method starts out the same as BST but then you need
-            to restructure your RBT.
+        """ The delete method starts out the same as BST but then you need to
+            restructure your RBT.
         """
         ret = False
         if(type(ticketID) == int and ticketID > 0):
@@ -473,8 +487,8 @@ class RedBlackTree:
 
     def insert(self, ticket):
         """
-        Hints: add a key to the tree. Don't forget to fix up the tree
-        and balance the nodes.
+        Hints: add a key to the tree. Don't forget to fix up the tree and
+        balance the nodes.
         """
         ret = False
         if(self._isValid(ticket)):
@@ -504,13 +518,13 @@ class RedBlackTree:
 
         return ret
 
-    # ========================== Additional Methods =============================
+    # ========================== Additional Methods ============================
     # I think these are useful. Implement them if you want.
     def findNode(self, ticketID):
         """
-        Hints: This method finds a node and returns it or
-               false if no node is found. First do a BST search for the RBNode
-               with the same key as the input ticketID. Then return that node.
+        Hints: This method finds a node and returns it or false if no node is
+               found. First do a BST search for the RBNode with the same key as
+               the input ticketID. Then return that node.
         """
         # similar to find but returns a node (used internally for find sucessor
         # and delete). Same steps as above, just return currentNode
@@ -584,8 +598,7 @@ class RedBlackTree:
 
     def deleteFixup(self, currentNode):
         """
-        Hint: receives a node and fixes up the tree,
-              balancing from that node.
+        Hint: receives a node and fixes up the tree, balancing from that node.
         """
         while(not currentNode == self._root and currentNode._color == "black"):
             if(currentNode == currentNode._parent._leftChild):
