@@ -39,7 +39,7 @@ struct Cache *mallocCache(int numLines)
         struct Line *lines = (struct Line *)malloc(sizeof(struct Line *) * numLines);
         if (lines != NULL)
         {
-            for (int set = 0; set < numLines; set++)
+            for (int set= 0; set < numLines; set++)
             {
                 struct Line *cacheLine = &lines[set];
                 cacheLine->valid = 0;
@@ -73,7 +73,7 @@ void printCache(struct Cache *cache)
         struct Line *cacheLine = &lines[set];
         if (cacheLine->valid)
         {
-            printf("set: %x - tag: %x - valid: %x - data: %.2x %.2x %.2x %.2x\n",
+            printf("set: %d - tag: %x - valid: %u - data: %.2x %.2x %.2x %.2x\n",
                    set, cacheLine->tag, cacheLine->valid, cacheLine->data[0],
                    cacheLine->data[1], cacheLine->data[2], cacheLine->data[3]);
         }
@@ -96,8 +96,8 @@ void readValue(struct Cache *cache, unsigned int address)
 
     if (line->valid)
     {
-        printf("found set: %x - tag: %x - offset: %x - valid: %x - data: %.2x\n",
-               s, line->tag, o, line->valid, line->data[o]);
+        printf("found set: %d - tag: %d - offset: %d - valid: %d - data: %.2x %.2x %.2x %.2x\n",
+               s, line->tag, o, line->valid, line->data[0], line->data[1], line->data[2], line->data[3]);
 
         if (line->tag == t)
         {
@@ -105,7 +105,7 @@ void readValue(struct Cache *cache, unsigned int address)
         }
         else
         {
-            printf("tags don't match - conflict miss\n");
+            printf("tags don't match = conflict miss\n");
         }
     }
     else
@@ -141,40 +141,8 @@ void writeValue(struct Cache *cache, unsigned int address, unsigned char *newDat
            s, line->tag, line->valid, newData[0], newData[1], newData[2], newData[3]);
 }
 
-int main()
-{
+int main(){
     struct Cache *cache = mallocCache(16);
-    // Loop until user enters 'q'
-    char c;
-    do
-    {
-        printf("Enter 'r' for read, 'w' for write, 'p' to print, 'q' to quit: ");
-        scanf(" %c", &c);
-        if (c == 'r')
-        {
-            printf("Enter 32-bit unsigned hex address: ");
-            unsigned int a;
-            scanf(" %x", &a);
-            readValue(cache, a);
-        }
-        else if (c == 'w')
-        {
-            printf("Enter 32-bit unsigned hex address: ");
-            unsigned int a;
-            scanf(" %x", &a);
-            printf("Enter 32-bit unsigned hex value: ");
-            unsigned int v;
-            scanf(" %x", &v);
-            // Get byte pointer to v
-            unsigned char *data = (unsigned char *)&v;
-            writeValue(cache, a, data);
-        }
-        else if (c == 'p')
-        {
-            printCache(cache);
-        }
-        printf("\n");
-    } while (c != 'q');
 
-    freeCache(cache);
+    
 }
