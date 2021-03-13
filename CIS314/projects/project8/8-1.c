@@ -39,11 +39,12 @@ struct Cache *mallocCache(int numLines)
         struct Line *lines = (struct Line *)malloc(sizeof(struct Line *) * numLines);
         if (lines != NULL)
         {
-            for (int i = 0; i < numLines; i++)
+            for (int set= 0; set < numLines; set++)
             {
-                lines[i].valid = 0;
+                struct Line *cacheLine = &lines[set];
+                cacheLine->valid = 0;
             }
-            newCache->numLines = numLines ? numLines > 0 : 16;
+            newCache->numLines = numLines;
             newCache->lines = lines;
         }
         else
