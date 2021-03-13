@@ -36,7 +36,7 @@ struct Cache *mallocCache(int numLines)
     struct Cache *newCache = (struct Cache *)malloc(sizeof(struct Cache *));
     if (newCache != NULL)
     {
-        struct Line *lines = (struct Line *)malloc(sizeof(struct Line *) * numLines);
+        struct Line *lines = (struct Line *)malloc(sizeof(struct Line) * numLines);
         if (lines != NULL)
         {
             for (int set = 0; set < numLines; set++)
