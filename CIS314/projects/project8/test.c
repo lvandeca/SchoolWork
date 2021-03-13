@@ -3,17 +3,19 @@
 
 int main()
 {
-    int *array = (int *)malloc(sizeof(int) * 16);
+    int *integerArray = (int *)malloc(sizeof(int *) * 4);
 
-    for (int i = 0; i < 16; i++)
+    int i;
+    for (i = 0; i < 4; i++)
     {
-        array[i] = i;
+        integerArray[i] = i + 1;
     }
 
-    for (int j = 0; j < 16; j++)
+    for (i = 0; i < 4; i++)
     {
-        printf("%c\n", array[j]);
+        int tmp = integerArray[i];
+        printf("%d\n", tmp);
     }
 
-    return 1;
+    free(integerArray);
 }

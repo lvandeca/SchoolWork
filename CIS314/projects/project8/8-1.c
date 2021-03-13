@@ -34,16 +34,25 @@ struct Cache *mallocCache(int numLines)
     // valid to 0 for each struct Line. Return the struct Cache pointer.
 
     struct Cache *newCache = (struct Cache *)malloc(sizeof(struct Cache *));
-    if(newCache != NULL){
-
-        newCache->numLines = numLines;
+    if (newCache != NULL)
+    {
         struct Line *lines = (struct Line *)malloc(sizeof(struct Line *) * numLines);
-        if(lines != NULL){
+        if (lines != NULL)
+        {
+            for (int i = 0; i < numLines; i++)
+            {
+                lines[i].valid = 0;
+            }
+            newCache->numLines = numLines ? numLines > 0 : 16;
             newCache->lines = lines;
-
-
         }
-    } 
+        else
+        {
+            free(newCache);
+            newCache = NULL;
+        }
+    }
+    return newCache;
 }
 void freeCache(struct Cache *cache)
 {
@@ -53,14 +62,57 @@ void freeCache(struct Cache *cache)
 void printCache(struct Cache *cache)
 {
     // TODO - print all valid lines in the cache.
+
+    struct Line *lines = cache->lines;
+    int numlines = cache->numLines;
+    int set;
+
+    for (set = 0; set < numlines; set++)
+    {
+        struct Line *cacheLine = &lines[set];
+        if (cacheLine->valid)
+        {
+            printf("set: %d - tag: %x - valid: %u - data: %.2x %.2x %.2x %.2x\n",
+                   set, cacheLine->tag, cacheLine->valid, cacheLine->data[0],
+                   cacheLine->data[1], cacheLine->data[2], cacheLine->data[3]);
+        }
+    }
 }
+
 void readValue(struct Cache *cache, unsigned int address)
 {
     // TODO - check the cache for a cached byte at the specified address.
     // If found, indicate a hit and print the byte.  If not found, indicate
     // a miss due to either an invalid line (cold miss) or a tag mismatch
     // (conflict miss).
+
+    unsigned int s = getSet(address);
+    unsigned int t = getTag(address);
+    unsigned int o = getOffset(address);
+    printf("looking for set: %d - tag: %d\n", s, t);
+
+    struct Line *line = &cache->lines[s];
+
+    if (line->valid)
+    {
+        printf("found set: %d - tag: %d - offset: %d - valid: %d - data: %.2x %.2x %.2x %.2x\n",
+               s, line->tag, o, line->valid, line->data[0], line->data[1], line->data[2], line->data[3]);
+
+        if (line->tag == t)
+        {
+            printf("hit!\n");
+        }
+        else
+        {
+            printf("tags don't match = conflict miss\n");
+        }
+    }
+    else
+    {
+        printf("no valid line found - cold miss!\n");
+    }
 }
+
 void writeValue(struct Cache *cache, unsigned int address, unsigned char *newData)
 { // Calculate set and tag for address
     unsigned int s = getSet(address);
@@ -81,7 +133,8 @@ void writeValue(struct Cache *cache, unsigned int address, unsigned char *newDat
         line->data[i] = newData[i];
     }
 
-    // Update line tag, mark line as valid line->tag = t;
+    // Update line tag, mark line as valid
+    line->tag = t;
     line->valid = 1;
     printf("wrote set: %x - tag: %x - valid: %u - data: %.2x %.2x %.2x %.2x\n",
            s, line->tag, line->valid, newData[0], newData[1], newData[2], newData[3]);
