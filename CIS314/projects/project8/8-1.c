@@ -32,6 +32,18 @@ struct Cache *mallocCache(int numLines)
     // TODO - malloc a pointer to a struct Cache, malloc a pointer to an array
     // of struct Line instances (array length is numLines). Also initialize
     // valid to 0 for each struct Line. Return the struct Cache pointer.
+
+    struct Cache *newCache = (struct Cache *)malloc(sizeof(struct Cache *));
+    if(newCache != NULL){
+
+        newCache->numLines = numLines;
+        struct Line *lines = (struct Line *)malloc(sizeof(struct Line *) * numLines);
+        if(lines != NULL){
+            newCache->lines = lines;
+
+
+        }
+    } 
 }
 void freeCache(struct Cache *cache)
 {
