@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -11,6 +12,8 @@ int main()
 
     for (int j = 0; j < 16; j++)
     {
-        printf("%c\n", array[j])
+        printf("%c\n", array[j]);
     }
+
+    return 1;
 }
