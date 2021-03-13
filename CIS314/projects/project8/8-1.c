@@ -1,5 +1,15 @@
+/*
+Author: Luke Vandecasteele
+Date: 3/12/2021 Last Modified: 3/13/2021
+Credits: Class notes, Assignment8.pdf in folder
+Description: Simulation of a 64B direct mapped cache with 4B blocks and 16 sets.
+Notes:
+        1. None
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
+
 struct Line
 {
     unsigned char data[4];
@@ -22,96 +32,120 @@ unsigned int getSet(unsigned int address)
 { // 16 sets, so offset is bits 2-6
     return (address >> 2) & 0xF;
 }
+
 unsigned int getTag(unsigned int address)
 {
     // Offset and set are 6 bits total, so tag is high-order 26 bits
     return address >> 6;
 }
-struct Cache *mallocCache(int numLines)
-{
-    // TODO - malloc a pointer to a struct Cache, malloc a pointer to an array
-    // of struct Line instances (array length is numLines). Also initialize
-    // valid to 0 for each struct Line. Return the struct Cache pointer.
 
-    struct Cache *newCache = (struct Cache *)malloc(sizeof(struct Cache *));
-    if (newCache != NULL)
-    {
-        struct Line *lines = (struct Line *)malloc(sizeof(struct Line) * numLines);
-        if (lines != NULL)
-        {
-            for (int set = 0; set < numLines; set++)
-            {
-                struct Line *cacheLine = &lines[set];
-                cacheLine->valid = 0;
-            }
-            newCache->numLines = numLines;
-            newCache->lines = lines;
-        }
-        else
-        {
-            free(newCache);
-            newCache = NULL;
-        }
-    }
-    return newCache;
-}
 void freeCache(struct Cache *cache)
 {
     free(cache->lines);
     free(cache);
 }
+
+//=================================My Methods==================================
+
+struct Cache *mallocCache(int numLines)
+{
+    //malloc a a pointer to a struct Cache
+    //only continue if malloc call succeeds
+    struct Cache *newCache = (struct Cache *)malloc(sizeof(struct Cache *));
+    if (newCache != NULL)
+    {
+        //malloc an array of struct Line instances of length "numLines"
+        //only continue if malloc call suceeds
+        struct Line *lines = (struct Line *)malloc(
+            sizeof(struct Line) * numLines);
+
+        if (lines != NULL)
+        {
+            //initialize each struct Line in the array
+            //to have an invalid cache line (i.e. set valid = 0)
+            for (int set = 0; set < numLines; set++)
+            {
+                struct Line *cacheLine = &lines[set];
+                cacheLine->valid = 0;
+            }
+            //store numLines and array of struct Line in our new
+            //struct Cache instance
+            newCache->numLines = numLines;
+            newCache->lines = lines;
+        }
+        else
+        {
+            //malloc call for an array of struct Line failed
+            //must free the newCache instance
+            free(newCache);
+            newCache = NULL;
+        }
+    }
+
+    //return the new struct Cache pointer
+    return newCache;
+}
+
 void printCache(struct Cache *cache)
 {
-    // TODO - print all valid lines in the cache.
-
     int numlines = cache->numLines;
     int set;
 
+    //iterate through each set in the cache
     for (set = 0; set < numlines; set++)
     {
+        //get the line in the cache with the relevant set
         struct Line *line = &cache->lines[set];
+
+        //if the line in cache has a valid tag, print the line's information
         if (line->valid)
         {
+            //simpel helper for printing the date in the current line of cache
             unsigned char *data = line->data;
             printf("set: %x - tag: %x - valid: %x - data: %.2x %.2x %.2x %.2x\n",
-                   set, line->tag, line->valid, data[0], data[1], data[2], data[3]);
+                   set, line->tag, line->valid,
+                   data[0], data[1], data[2], data[3]);
         }
     }
 }
 
 void readValue(struct Cache *cache, unsigned int address)
 {
-    // TODO - check the cache for a cached byte at the specified address.
-    // If found, indicate a hit and print the byte.  If not found, indicate
-    // a miss due to either an invalid line (cold miss) or a tag mismatch
-    // (conflict miss).
-
+    //get the relevant fields from the address
     unsigned int s = getSet(address);
     unsigned int t = getTag(address);
     unsigned int o = getOffset(address);
     printf("looking for set: %d - tag: %d\n", s, t);
 
+    //get the cache line determined by the set of the address
     struct Line *line = &cache->lines[s];
 
+    //continue if the line has data in it (i.e. valid != 0)
     if (line->valid)
     {
+        //print the set we found in the cache along with its data
         printf("found set: %x - tag: %x - offset: %x - valid: %x - data: %.2x\n",
                s, line->tag, o, line->valid, line->data[o]);
 
+        //check if the tag in our set matches the tag of the given address
         if (line->tag == t)
         {
             printf("hit!\n");
         }
         else
         {
-            printf("tags don't match - conflict miss\n");
+            //line in cache has different data so we have a conflict miss
+            printf("tags don't match - conflict miss!\n");
         }
     }
     else
     {
+        //not a valid line in the set
         printf("no valid line found - cold miss!\n");
     }
 }
+
+//=============================================================================
 
 void writeValue(struct Cache *cache, unsigned int address, unsigned char *newData)
 { // Calculate set and tag for address
