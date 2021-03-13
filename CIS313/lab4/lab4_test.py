@@ -8,8 +8,8 @@ import time
 
 
 # Global Variables
-testCases = 2000    # number of trees to test
-treeSize = 100      # size of tree to test
+testCases = 1000    # number of trees to test
+treeSize = 40    # size of tree to test
 
 
 # ================================Helper Functions==============================
@@ -75,7 +75,7 @@ def testTreeDelete(testTickets, testTree):
 def myPercent(percent, testType):
     p = floor(percent * 100)
     ret = f" {p}%"
-    ret2 = 79 - len(testType) + 1
+    ret2 = 78 - len(testType) + 1
     if(p < 10):
         ret2 -= 2
     elif(p < 100):
@@ -116,7 +116,7 @@ def checkTree(testTree, test, testCases, testType):
 
 
 def testInsert(testCases, treeSize):
-    testType = "Testing insert ----------------------------------------------------------------0%"
+    testType = "Testing insert ---------------------------------------------------------------0%"
     print_slow(testType)
     insertSuccess = False
     fullTreeCheck = False
@@ -144,7 +144,7 @@ def testInsert(testCases, treeSize):
 
 
 def testDelete(testCases, treeSize):
-    testType = "Testing delete ----------------------------------------------------------------0%"
+    testType = "Testing delete ---------------------------------------------------------------0%"
     print_slow(testType)
     deleteSuccess = False
     fullTreeCheck = False
