@@ -64,18 +64,17 @@ void printCache(struct Cache *cache)
 {
     // TODO - print all valid lines in the cache.
 
-    struct Line *lines = cache->lines;
     int numlines = cache->numLines;
     int set;
 
     for (set = 0; set < numlines; set++)
     {
-        struct Line *cacheLine = &lines[set];
-        if (cacheLine->valid)
+        struct Line *line = &cache->lines[set];
+        if (line->valid)
         {
+            unsigned char *data = line->data;
             printf("set: %x - tag: %x - valid: %x - data: %.2x %.2x %.2x %.2x\n",
-                   set, cacheLine->tag, cacheLine->valid, cacheLine->data[0],
-                   cacheLine->data[1], cacheLine->data[2], cacheLine->data[3]);
+                   set, line->tag, line->valid, data[0], data[1], data[2], data[3]);
         }
     }
 }
