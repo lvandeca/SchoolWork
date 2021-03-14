@@ -521,11 +521,15 @@ class RedBlackTree:
     # ========================== Additional Methods ============================
     # I think these are useful. Implement them if you want.
     def findNode(self, ticketID):
+        """  
+        Description: This method finds a node and returns it or false if no node is
+                     found. First do a BST search for the RBNode with the same key as
+                     the input ticketID. Then return that node.
+
+        Returns:
+            bool/RBNode: returns a node if found, else returns False
         """
-        Hints: This method finds a node and returns it or false if no node is
-               found. First do a BST search for the RBNode with the same key as
-               the input ticketID. Then return that node.
-        """
+
         # similar to find but returns a node (used internally for find sucessor
         # and delete). Same steps as above, just return currentNode
 
@@ -652,30 +656,52 @@ class RedBlackTree:
         currentNode._color = "black"
 
     def leftRotate(self, currentNode):
-        """ perform a left rotation from a given node"""
+        """
+        Description: perform a left rotation from a given node.
 
+        Note: This function runs in O(1) time and only changes pointers between
+              nodes. The color of nodes is altered in deleteFixup and 
+              insertFixup.
+        """
+
+        # get currentNode's right child
         nodeRight = currentNode.getRChild()
+        # set currentNode's right subtree to nodeRight's left subtree
         currentNode._rightChild = nodeRight._leftChild
 
+        # nodeRight is not a sentinel, then push up its left child
         if(not nodeRight.isSentinel()):
             nodeRight._leftChild._parent = currentNode
 
+        # set nodeRight's parent to currentNode's old parent
+        # i.e. shift nodeRight up the tree
         nodeRight._parent = currentNode._parent
 
+        # currentNode was the root, make nodeRight new root
         if(currentNode._parent.isSentinel()):
             self._root = nodeRight
 
+        # check if current node is a right or left child
+        # then replace its spot with nodeRight
         elif(currentNode.isLeftChild()):
             currentNode._parent._leftChild = nodeRight
 
         else:
             currentNode._parent._rightChild = nodeRight
 
+        # put currentNode on nodeRight left (i.e. shift currentNode down)
+        # and set corrent parent
         nodeRight._leftChild = currentNode
         currentNode._parent = nodeRight
 
     def rightRotate(self, currentNode):
-        """ perform a right rotation from a given node"""
+        """
+        Description: perform a right rotation from a given node
+
+        Notes: See comments in self.leftRotate for clarification.
+        """
+        # see self.leftRotate, this method is exactly the same but with left and
+        # right switched to perform a rotation to the right
 
         nodeLeft = currentNode.getLChild()
         currentNode._leftChild = nodeLeft._rightChild
@@ -697,24 +723,46 @@ class RedBlackTree:
         nodeLeft._rightChild = currentNode
         currentNode._parent = nodeLeft
 
-    def check(self, node, blackHeight):
+    # ====================== Extra helper function ============================
 
+    def check(self, node, blackHeight):
+        """
+        Description: Extra helper function to recursively check that the current
+                     tree conforms to the definition of a Red-Black Tree for 
+                     testing.
+
+        Args:
+            node (RBNode): top of tree to begin testing on
+            blackHeight (int): counter for the number of black nodes hit 
+                               during the recursion
+
+        Returns:
+            tuple: returns True/False depending on if tree conforms to 
+                   standards, as well as a potential error message for debugging
+        """
+
+        # assume tree is empty, so tree is Red-Black
         status = True, blackHeight
+        # get left and right child for recursive check
         left = node._leftChild
         right = node._rightChild
+        # step 1: check that root is black
         if(self._root._color != "black"):
             return "Root node is not black", blackHeight
-
+        # update black height for step 3
         if(node._color == "black"):
             blackHeight += 1
 
+        # we have reached bottom of tree, all tests passed
         if(node.isSentinel()):
             return True, blackHeight
 
+        # node is red, enter the recursion
         elif(node._color == "red"):
-
+            # step 2: check that red node has only black children
             if(left._color == "black" and right._color == "black"):
                 status = True, blackHeight
+            # return error message for red children without two black children
             else:
                 nK = node._key
                 rK = right._key
@@ -725,19 +773,28 @@ class RedBlackTree:
                 ret += f"Right child: ({rK}, {rC}) Left child: ({lK}, {lC})"
                 return ret, blackHeight
 
+        # perform recursion to check subtrees for same conditions
         leftCheck = self.check(left, 0)
         rightCheck = self.check(right, 0)
 
+        # step 3: check to make sure the the blackHeight for each subtree is
+        # equal (aka that all simple paths to the leaves have the same number of
+        # black nodes), if not equal, generate and return error message
         if(leftCheck[1] != rightCheck[1]):
             ret = "Number of black nodes unequal: "
             ret += f"Left child: {left} height: {leftCheck[1]} -- "
             ret += f"Right child: {right} height: {rightCheck[1]}"
             return ret, blackHeight
-
+        # subtrees have same number of black nodes, increment blackHeight
+        # counter by the count for the subtrees
         blackHeight += leftCheck[1]
+
+        # check the both of the subtrees didn't violate step 1 or 2
         subCheck = (type(leftCheck[0]) != str and type(rightCheck[0]) != str)
+        # subtree's check was successfull
         if(subCheck):
             status = True, blackHeight
+        # return the error message for which subtree failed
         elif(type(leftCheck[0]) != bool):
             return leftCheck[0], blackHeight
         else:

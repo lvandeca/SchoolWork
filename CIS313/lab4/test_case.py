@@ -52,13 +52,13 @@ def myChoice(ticketID, testTickets):
 
 
 def main():
-    SIZE = 10                             # Number of nodes you want in tree
+    SIZE = 12                          # Number of nodes you want in tree
     # Premade tickets to test specific cases
-    testValues = [8, 7, 9, 3, 10, 2, 6, 16, 26, 17]
+    testValues = [12, 13, 17, 10, 4, 6, 9, 15, 30, 25, 20, 40]
 
     # Only uncomment the one you want to use
-    testTickets = randomTestTickets(SIZE)             # For random tickets
-    # testTickets = defaultTestTickets(testValues)     # For premade tickets
+    # testTickets = randomTestTickets(SIZE)             # For random tickets
+    testTickets = defaultTestTickets(testValues)     # For premade tickets
 
     testTree = RedBlackTree()
 
@@ -100,7 +100,7 @@ def main():
         print("============ Testing Delete Method ============")
         i = 0
         while len(testTickets) > 0:
-            # deleteOrder = [10, 6, 17, 3, 7, 2, 26, 16, 9, 8]          #
+            # deleteOrder = [13, 12]          #
             # deleteTicket = myChoice(deleteOrder[i], testTickets)
             deleteTicket = choice(testTickets)
             testTickets.remove(deleteTicket)
