@@ -51,7 +51,7 @@ struct Cache *mallocCache(int numLines)
 {
     //malloc a a pointer to a struct Cache
     //only continue if malloc call succeeds
-    struct Cache *newCache = (struct Cache *)malloc(sizeof(struct Cache *));
+    struct Cache *newCache = (struct Cache *)malloc(sizeof(struct Cache));
     if (newCache != NULL)
     {
         //malloc an array of struct Line instances of length "numLines"
