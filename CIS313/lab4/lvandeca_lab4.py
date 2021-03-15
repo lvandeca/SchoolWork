@@ -393,7 +393,7 @@ class RedBlackTree:
 
         Inputs: A node from the BST.
 
-        Outputs: The minumum node from the sub-tree (e.g the left-most child).
+        Outputs: The minimum node from the sub-tree (e.g the left-most child).
         """
         returnValue = False
         if not node.isSentinel():
@@ -424,14 +424,24 @@ class RedBlackTree:
                     succ = succ.getParent()
         return succ
 
-    # =========================== Manditory Methods ============================
+    # =========================== Mandatory Methods ============================
     # You write these. I will update with BST solution on saturday.
     def find(self, ticketID):
-        """ Hints: This method returns either a stored mealticket or False just
-                   like in the BST lab. Start at the root then make your way to
-                   the RBNode whose ticketID matches the input. Then return the
-                   value of that node.
         """
+        Description: This method returns either a stored mealticket or False just
+                     like in the BST lab. Start at the root then make your way to
+                     the RBNode whose ticketID matches the input. Then return the
+                     value of that node.
+
+        Returns:
+            bool/MealTicket: returns MealTicket with matching ticketID, or False
+                             if the meal ticket is not found.
+        """
+
+        # assume failure, start at the root and
+        # iterate down the tree until we hit a Sentinel,
+        # or we find our matching MealTicket
+
         ret = False
         if(type(ticketID) == int and ticketID > 0):
             currentNode = self._root
@@ -446,57 +456,104 @@ class RedBlackTree:
         return ret
 
     def delete(self, ticketID):
-        """ The delete method starts out the same as BST but then you need to
-            restructure your RBT.
         """
+        Description: method for deleting node from the tree. Only adjusts 
+                     pointers to make the necessary transplants, and changes
+                     color for those transplants. Calls self.deleteFixup() to
+                     fix and maintain Red-Black Tree properties.
+
+        Returns:
+            bool: returns True/False depending upon if the deletion is successfull
+        """
+
+        # assume failure
+        # only continue if valid ticketID is input
         ret = False
         if(type(ticketID) == int and ticketID > 0):
+
+            # find matching node in the tree
+            # only continue if we return a node, not a bool
             currentNode = self.findNode(ticketID)
             if(type(currentNode) == RBNode):
+
                 ret = True
-                y = currentNode
-                yColor = y._color
+                y = currentNode     # save current node for later
+                yColor = y._color   # save currentNode color for deleteFixup()
+
+                # for when currentNode has only a right child
                 if(currentNode._leftChild.isSentinel()):
                     x = currentNode._rightChild
                     self.RBTransplant(currentNode, currentNode._rightChild)
+                # for when currentNode has only a left child
                 elif(currentNode._rightChild.isSentinel()):
                     x = currentNode._leftChild
                     self.RBTransplant(currentNode, currentNode._leftChild)
+
+                # currentNode has two children
                 else:
+                    # find the successor
                     y = self._findMinimum(currentNode._rightChild)
+                    # node being moved now will have a different color, so we
+                    # save new node's color for deleteFixup() later
                     yColor = y._color
                     x = y._rightChild
 
+                    # currentNode's successor was its right child
                     if(y._parent == currentNode):
                         x._parent = y
+
                     else:
+                        # shift up the successor's child
                         self.RBTransplant(y, y._rightChild)
+                        # set necessary pointers for the shift
                         y._rightChild = currentNode._rightChild
                         y._rightChild._parent = y
+
+                    # shift up the successor to currentNode's position
                     self.RBTransplant(currentNode, y)
+                    # set correct pointers
                     y._leftChild = currentNode._leftChild
                     y._leftChild._parent = y
+                    # change successor's color to currentNode's color
                     y._color = currentNode._color
+
+                # if the node we deleted was black, or if the successor we
+                # replaced the node with was black then we have ruined our
+                # Red-Black Tree properties
                 if(yColor == "black"):
                     self.deleteFixup(x)
+
+                # adjust height counter, set all of currentNode's pointers to
+                # None to insure proper garbage collection
                 self._treeHeight -= 1
                 currentNode.setLChild(None)
                 currentNode.setRChild(None)
                 currentNode.setParent(None)
+
         return ret
 
     def insert(self, ticket):
         """
-        Hints: add a key to the tree. Don't forget to fix up the tree and
-        balance the nodes.
+        Description: method to insert a tree into Red-Black tree. Calls
+                     self.insertFixup() to insure that RB Tree properties are 
+                     maintained.
+
+        Returns:
+            bool: returns True/False depending on if the insert was successful.
         """
+
+        # assume failure
+        # only continue if we have a valid ticket
         ret = False
         if(self._isValid(ticket)):
-            newNode = RBNode(ticket)
-            ret = True
+
+            newNode = RBNode(ticket)    # create new RBNode instance
+            ret = True                  # set return value to True
             nextNode = Sentinel()
             currentNode = self._root
 
+            # start at root, work our way down the tree until
+            # we find the proper place to insert the newNode
             while(not currentNode.isSentinel()):
                 nextNode = currentNode
 
@@ -505,16 +562,19 @@ class RedBlackTree:
                 else:
                     currentNode = currentNode._rightChild
 
-            newNode._parent = nextNode
-            if(nextNode.isSentinel()):
+            newNode._parent = nextNode  # set proper parent
+            if(nextNode.isSentinel()):  # tree is empty
                 self._root = newNode
+
+            # newNode is a left or a right child
             elif(newNode < nextNode):
                 nextNode._leftChild = newNode
             else:
                 nextNode._rightChild = newNode
 
+            # fix up to maintain Red-Black tree properties within the tree
             self.insertFixup(newNode)
-            self._treeHeight += 1
+            self._treeHeight += 1       # increase height counter
 
         return ret
 
@@ -530,8 +590,9 @@ class RedBlackTree:
             bool/RBNode: returns a node if found, else returns False
         """
 
-        # similar to find but returns a node (used internally for find sucessor
-        # and delete). Same steps as above, just return currentNode
+        # similar to find but returns a node (used internally for find successor
+        # and delete). Same steps as above, just return currentNode rather than
+        # a MealTicket
 
         ret = False
         if(type(ticketID) == int and ticketID > 0):
@@ -547,112 +608,225 @@ class RedBlackTree:
         return ret
 
     def RBTransplant(self, uNode, vNode):
+        """Description: transplant method for Red-Black tree deletions
+
+        Args:
+            uNode (RBNode): node to be replaced and move down
+            vNode (RBNode): node to move up the tree
+        """
 
         uParent = uNode.getParent()
-        if(uParent.isSentinel()):
+        if(uParent.isSentinel()):  # uNode was the root
             self._root = vNode
+        # uNode was left or right child, gets replaced accordingly
         elif(uNode.isLeftChild()):
             uParent._leftChild = vNode
         else:
             uParent._rightChild = vNode
+        # unconditionally set vNode's new parent
         vNode._parent = uParent
 
     def insertFixup(self, currentNode):
-        """Hint: write a function to balance your tree after inserting"""
+        """
+        Description: method to fix and maintain the Red-Black tree properties
+                     after an insertion. Changes color of the nodes depending 
+                     on the case, and then calls either self.rightRotate() or 
+                     self.leftRotate to fix the structure of the tree.
 
+        Args:
+            currentNode (RBNode): node inserted that we start fixing up from
+
+        Notes: Cases referred to in comments are from the textbook: 
+               Introduction to Algorithms, Third Edition
+        """
+
+        # inserted nodes are always red
+        # so a problem occurs if its parent is only red
+        # this creates our looping condition
         while(currentNode.getParent()._color == "red"):
+            # get parent and grandparent for later use
             nodeParent = currentNode.getParent()
             nodeGrandParent = nodeParent._parent
 
+            # uncle node changes depending upon location of parent node
+            # this gives us the outer "if else" block
             if(nodeParent.isLeftChild()):
-
                 nodeUncle = nodeGrandParent._rightChild
+
+                # case 1: push color down from grandparent to its children
                 if(nodeUncle._color == "red"):
                     nodeParent._color = "black"
                     nodeUncle._color = "black"
                     nodeGrandParent._color = "red"
+                    # update currentNode and then continue up the tree to check
+                    # for any other violations
                     currentNode = nodeGrandParent
 
-                else:
+                else:  # uncle node is black
+
+                    # case 2: we have a red child, red parent, an arbitrarily
+                    # colored grandparent, and a black uncle. Visually, the
+                    # shape our child, parent and grandparent form is an left
+                    # arrow (<) so we move up the tree to parent, and left rotate
                     if(currentNode.isRightChild()):
                         currentNode = nodeParent
                         self.leftRotate(currentNode)
+
+                    # case 3: we have the same color conditions as above, but th
+                    # shape that our child, parent, and granparent form is a
+                    # diagonal line to the left (/) so we perform a right
+                    # rotate and recolor accordingly
                     currentNode._parent._color = "black"
                     currentNode._parent._parent._color = "red"
                     self.rightRotate(nodeGrandParent)
 
             else:
-
+                # else block is exactly the same as the "if" block above, just
+                # with left and right reversed since we have an parent that is a
+                # right child, rather than a left child
                 nodeUncle = nodeGrandParent._leftChild
+
+                # case 1: push color down from grandparent to its children
                 if(nodeUncle._color == "red"):
                     nodeParent._color = "black"
                     nodeUncle._color = "black"
                     nodeGrandParent._color = "red"
+                    # update currentNode and then continue up the tree to check
+                    # for any other violations
                     currentNode = nodeGrandParent
 
-                else:
+                else:  # uncle node is black
+
+                    # case 2: we have a red child, red parent, an arbitrarily
+                    # colored grandparent, and a black uncle. Visually, the
+                    # shape our child, parent and grandparent form is an right
+                    # arrow (>) so we move up the tree to parent, and right rotate
                     if(currentNode.isLeftChild()):
                         currentNode = nodeParent
                         self.rightRotate(currentNode)
+
+                    # case 3: we have the same color conditions as above, but th
+                    # shape that our child, parent, and granparent form is a
+                    # diagonal line to the right (\) so we perform a left
+                    # rotate and recolor accordingly
                     currentNode._parent._color = "black"
                     currentNode._parent._parent._color = "red"
                     self.leftRotate(nodeGrandParent)
 
+        # set proper root color
         self._root._color = "black"
 
     def deleteFixup(self, currentNode):
         """
-        Hint: receives a node and fixes up the tree, balancing from that node.
+        Description: receives a node and fixes up the tree, balancing from
+                     that node.
+
+        Notes:
+                1. Our program running time is O(log(n)) since the height of our
+                tree is log(n) and thus at worst we traverse the entire height
+                of our tree.
+
+                2. Only case 2 will result in the while loop continuing. In 
+                case 1, our sibling node is red, and so after the rotation, our 
+                new current node will be red, resulting in termination. Case
+                3 simply leads into case 4 which only occurs at the top of the
+                tree and thus sets our current node to the root, thus achieving
+                termination
         """
+
+        # work our way up the tree fixing until we reach the root, or our
+        # current node is red, then we skip the end of the loop and color
+        # currentNode black
         while(not currentNode == self._root and currentNode._color == "black"):
+
+            # we break into two areas, when our node is a left or a right child
+
+            # currentNode is a left child
             if(currentNode == currentNode._parent._leftChild):
-                uncleNode = currentNode._parent._rightChild
+                # get the appropriate sibling
+                siblingNode = currentNode._parent._rightChild
 
-                if(uncleNode._color == "red"):
-                    uncleNode._color = "black"
+                # case 1: sibling is red, shift parent color down to sibling
+                # then perform a left rotate on the parent
+                if(siblingNode._color == "red"):
+                    siblingNode._color = "black"
                     currentNode._parent._color = "red"
                     self.leftRotate(currentNode._parent)
-                    uncleNode = currentNode._parent._rightChild
+                    siblingNode = currentNode._parent._rightChild
 
-                if(uncleNode._leftChild._color == "black" and uncleNode._rightChild._color == "black"):
-                    uncleNode._color = "red"
+                # case 2: sibling is black, and both children are black
+                # so we change the color of the sibling to red
+                siblingLeftColor = siblingNode._leftChild._color
+                siblingRightColor = siblingNode._rightChild._color
+                if(siblingLeftColor == "black" and siblingRightColor == "black"):
+                    siblingNode._color = "red"
+                    # move to parent node for next loop
                     currentNode = currentNode._parent
 
                 else:
-                    if(uncleNode._rightChild._color == "black"):
-                        uncleNode._leftChild._color = "black"
-                        uncleNode._color = "red"
-                        self.rightRotate(uncleNode)
-                        uncleNode = currentNode._parent._rightChild
-                    uncleNode._color = currentNode._parent._color
+                    # case 3: sibling is black, and left child is red
+                    # push sibling color down to left child, and right rotate
+                    # to give us a case 4 which occurs unconditionally
+                    if(siblingNode._rightChild._color == "black"):
+                        siblingNode._leftChild._color = "black"
+                        siblingNode._color = "red"
+                        self.rightRotate(siblingNode)
+                        # sibling has changed after rotate, get currentNode's
+                        # new sibling
+                        siblingNode = currentNode._parent._rightChild
+
+                    # case 4: sibling is black, and right child is red
+                    # push parent color to sibling,
+                    # make currentNode and sibling's right child black
+                    # perform a left rotate and move to root
+                    siblingNode._color = currentNode._parent._color
                     currentNode._parent._color = "black"
-                    uncleNode._rightChild._color = "black"
+                    siblingNode._rightChild._color = "black"
                     self.leftRotate(currentNode._parent)
                     currentNode = self._root
+
+            # currentNode is a right child
             else:
-                uncleNode = currentNode._parent._leftChild
+                # get the appropriate sibling
+                siblingNode = currentNode._parent._leftChild
 
-                if(uncleNode._color == "red"):
-                    uncleNode._color = "black"
+                # case 1: shift parent color down to sibling
+                # then perform a right rotate on the parent
+                if(siblingNode._color == "red"):
+                    siblingNode._color = "black"
                     currentNode._parent._color = "red"
                     self.rightRotate(currentNode._parent)
-                    uncleNode = currentNode._parent._leftChild
+                    siblingNode = currentNode._parent._leftChild
 
-                if(uncleNode._rightChild._color == "black" and uncleNode._leftChild._color == "black"):
-                    uncleNode._color = "red"
+                # case 2: sibling is black, and both children are black
+                # so we change the color of the sibling to red
+                siblingLeftColor = siblingNode._leftChild._color
+                siblingRightColor = siblingNode._rightChild._color
+                if(siblingLeftColor == "black" and siblingRightColor == "black"):
+                    siblingNode._color = "red"
                     currentNode = currentNode._parent
 
                 else:
-                    if(uncleNode._leftChild._color == "black"):
-                        uncleNode._rightChild._color = "black"
-                        uncleNode._color = "red"
-                        self.leftRotate(uncleNode)
-                        uncleNode = currentNode._parent._leftChild
-                    uncleNode._color = currentNode._parent._color
+                    # case 3: sibling is black, and right child is red
+                    # push sibling color down to right child, and left rotate
+                    # to give us a case 4 which occurs unconditionally
+                    if(siblingNode._leftChild._color == "black"):
+                        siblingNode._rightChild._color = "black"
+                        siblingNode._color = "red"
+                        self.leftRotate(siblingNode)
+                        siblingNode = currentNode._parent._leftChild
+
+                    # case 4: sibling is black, and left child is red
+                    # push parent color to sibling,
+                    # make currentNode and sibling's left child black
+                    # perform a right rotate and move to root
+                    siblingNode._color = currentNode._parent._color
                     currentNode._parent._color = "black"
-                    uncleNode._leftChild._color = "black"
+                    siblingNode._leftChild._color = "black"
                     self.rightRotate(currentNode._parent)
                     currentNode = self._root
+
+        # color currentNode black after while loop
         currentNode._color = "black"
 
     def leftRotate(self, currentNode):
@@ -690,7 +864,7 @@ class RedBlackTree:
             currentNode._parent._rightChild = nodeRight
 
         # put currentNode on nodeRight left (i.e. shift currentNode down)
-        # and set corrent parent
+        # and set correct parent
         nodeRight._leftChild = currentNode
         currentNode._parent = nodeRight
 
@@ -698,28 +872,40 @@ class RedBlackTree:
         """
         Description: perform a right rotation from a given node
 
-        Notes: See comments in self.leftRotate for clarification.
+        Note: This function runs in O(1) time and only changes pointers between
+              nodes. The color of nodes is altered in deleteFixup and 
+              insertFixup.
         """
         # see self.leftRotate, this method is exactly the same but with left and
         # right switched to perform a rotation to the right
 
+        # get currentNode's left child
         nodeLeft = currentNode.getLChild()
+        # set currentNode's left subtree to nodeLeft's right subtree
         currentNode._leftChild = nodeLeft._rightChild
 
+        # nodeLeft is not a sentinel, then push up its right child
         if(not nodeLeft._rightChild.isSentinel()):
             nodeLeft._rightChild._parent = currentNode
 
+        # set nodeLeft's parent to currentNode's old parent
+        # i.e. shift nodeLeft up the tree
         nodeLeft._parent = currentNode._parent
 
+        # currentNode was the root, make nodeLeft new root
         if(currentNode._parent.isSentinel()):
             self._root = nodeLeft
 
+        # check if current node is a right or left child
+        # then replace its spot with nodeLeft
         elif(currentNode.isRightChild()):
             currentNode._parent._rightChild = nodeLeft
 
         else:
             currentNode._parent._leftChild = nodeLeft
 
+        # put currentNode on nodeLeft right (i.e. shift currentNode down)
+        # and set correct parent
         nodeLeft._rightChild = currentNode
         currentNode._parent = nodeLeft
 
