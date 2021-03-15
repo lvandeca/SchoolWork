@@ -27,6 +27,7 @@ class Sentinel():
         return "Sentinel()"
 
     def __repr__(self):
+        """ For debugging and readability """
         return "Sentinel()"
 
     def isSentinel(self):
@@ -55,6 +56,7 @@ class RBNode():
         return "key: {}, color: {}".format(self._key, self._color)
 
     def __repr__(self):
+        """ For debugging and readability """
         returnValue = "RBNode("
         returnValue += "key: {}, ".format(self._key)
         returnValue += "color: {})".format(self._color)
@@ -265,10 +267,13 @@ class RedBlackTree:
         self.output = ""
 
     def __repr__(self):
+        """ For debugging and readability """
+
         returnValue = "RedBlackTree("
         returnValue += "height: {}, ".format(self._treeHeight)
         returnValue += "root: {}, ".format(repr(self._root))
         returnValue += "preorder: {})".format(self.traverse("repr pre-order"))
+
         return returnValue
 
     def __str__(self):
@@ -367,14 +372,14 @@ class RedBlackTree:
             self.preorder(node.getRChild())
 
     def reprPreorder(self, node):
-        """computes the pre-order traversal"""
+        """computes the pre-order traversal for repr() method"""
         if(not node.isSentinel()):
             self.output += repr(node) + ", "
             self.reprPreorder(node.getLChild())
             self.reprPreorder(node.getRChild())
 
     def reprPostorder(self, node):
-        """computes the pre-order traversal"""
+        """computes the pre-order traversal for repr() method"""
         if(not node.isSentinel()):
             self.output += repr(node) + ", "
             self.reprPostorder(node.getLChild())
@@ -428,14 +433,14 @@ class RedBlackTree:
     # You write these. I will update with BST solution on saturday.
     def find(self, ticketID):
         """
-        Description: This method returns either a stored mealticket or False just
-                     like in the BST lab. Start at the root then make your way to
-                     the RBNode whose ticketID matches the input. Then return the
-                     value of that node.
+        Description: This method returns either a stored mealticket or False 
+                     just like in the BST lab. Start at the root then make your 
+                     way to the RBNode whose ticketID matches the input. Then 
+                     return the value of that node.
 
         Returns:
-            bool/MealTicket: returns MealTicket with matching ticketID, or False
-                             if the meal ticket is not found.
+            bool/MealTicket: returns MealTicket with matching ticketID, or 
+            False if the meal ticket is not found.
         """
 
         # assume failure, start at the root and
@@ -463,7 +468,8 @@ class RedBlackTree:
                      fix and maintain Red-Black Tree properties.
 
         Returns:
-            bool: returns True/False depending upon if the deletion is successfull
+            bool: returns True/False depending upon if the deletion is 
+                  successfull
         """
 
         # assume failure
@@ -582,17 +588,18 @@ class RedBlackTree:
     # I think these are useful. Implement them if you want.
     def findNode(self, ticketID):
         """  
-        Description: This method finds a node and returns it or false if no node is
-                     found. First do a BST search for the RBNode with the same key as
-                     the input ticketID. Then return that node.
+        Description: This method finds a node and returns it or false if 
+                     no node is found. First do a BST search for the RBNode 
+                     with the same key as the input ticketID. Then return that 
+                     node.
 
         Returns:
             bool/RBNode: returns a node if found, else returns False
         """
 
-        # similar to find but returns a node (used internally for find successor
-        # and delete). Same steps as above, just return currentNode rather than
-        # a MealTicket
+        # similar to find but returns a node (used internally for find
+        # successor and delete). Same steps as above, just return currentNode
+        # rather than a MealTicket
 
         ret = False
         if(type(ticketID) == int and ticketID > 0):
@@ -667,14 +674,15 @@ class RedBlackTree:
                     # case 2: we have a red child, red parent, an arbitrarily
                     # colored grandparent, and a black uncle. Visually, the
                     # shape our child, parent and grandparent form is an left
-                    # arrow (<) so we move up the tree to parent, and left rotate
+                    # arrow (<) so we move up the tree to parent, and left
+                    # rotate
                     if(currentNode.isRightChild()):
                         currentNode = nodeParent
                         self.leftRotate(currentNode)
 
-                    # case 3: we have the same color conditions as above, but th
-                    # shape that our child, parent, and granparent form is a
-                    # diagonal line to the left (/) so we perform a right
+                    # case 3: we have the same color conditions as above, but
+                    # the shape that our child, parent, and granparent form is
+                    # a diagonal line to the left (/) so we perform a right
                     # rotate and recolor accordingly
                     currentNode._parent._color = "black"
                     currentNode._parent._parent._color = "red"
@@ -682,8 +690,8 @@ class RedBlackTree:
 
             else:
                 # else block is exactly the same as the "if" block above, just
-                # with left and right reversed since we have an parent that is a
-                # right child, rather than a left child
+                # with left and right reversed since we have an parent that is
+                # a right child, rather than a left child
                 nodeUncle = nodeGrandParent._leftChild
 
                 # case 1: push color down from grandparent to its children
@@ -700,14 +708,15 @@ class RedBlackTree:
                     # case 2: we have a red child, red parent, an arbitrarily
                     # colored grandparent, and a black uncle. Visually, the
                     # shape our child, parent and grandparent form is an right
-                    # arrow (>) so we move up the tree to parent, and right rotate
+                    # arrow (>) so we move up the tree to parent, and right
+                    # rotate
                     if(currentNode.isLeftChild()):
                         currentNode = nodeParent
                         self.rightRotate(currentNode)
 
-                    # case 3: we have the same color conditions as above, but th
-                    # shape that our child, parent, and granparent form is a
-                    # diagonal line to the right (\) so we perform a left
+                    # case 3: we have the same color conditions as above, but
+                    # the shape that our child, parent, and granparent form is
+                    # a diagonal line to the right (\) so we perform a left
                     # rotate and recolor accordingly
                     currentNode._parent._color = "black"
                     currentNode._parent._parent._color = "red"
@@ -721,10 +730,13 @@ class RedBlackTree:
         Description: receives a node and fixes up the tree, balancing from
                      that node.
 
+        Args:
+            currentNode (RBNode): node that we start fixing up from
+
         Notes:
-                1. Our program running time is O(log(n)) since the height of our
-                tree is log(n) and thus at worst we traverse the entire height
-                of our tree.
+                1. Our program running time is O(log(n)) since the height of 
+                our tree is log(n) and thus at worst we traverse the entire 
+                height of our tree.
 
                 2. Only case 2 will result in the while loop continuing. In 
                 case 1, our sibling node is red, and so after the rotation, our 
@@ -756,9 +768,9 @@ class RedBlackTree:
 
                 # case 2: sibling is black, and both children are black
                 # so we change the color of the sibling to red
-                siblingLeftColor = siblingNode._leftChild._color
-                siblingRightColor = siblingNode._rightChild._color
-                if(siblingLeftColor == "black" and siblingRightColor == "black"):
+                siblingLColor = siblingNode._leftChild._color
+                siblingRColor = siblingNode._rightChild._color
+                if(siblingLColor == "black" and siblingRColor == "black"):
                     siblingNode._color = "red"
                     # move to parent node for next loop
                     currentNode = currentNode._parent
@@ -800,9 +812,9 @@ class RedBlackTree:
 
                 # case 2: sibling is black, and both children are black
                 # so we change the color of the sibling to red
-                siblingLeftColor = siblingNode._leftChild._color
-                siblingRightColor = siblingNode._rightChild._color
-                if(siblingLeftColor == "black" and siblingRightColor == "black"):
+                siblingLColor = siblingNode._leftChild._color
+                siblingRColor = siblingNode._rightChild._color
+                if(siblingLColor == "black" and siblingRColor == "black"):
                     siblingNode._color = "red"
                     currentNode = currentNode._parent
 
@@ -876,8 +888,8 @@ class RedBlackTree:
               nodes. The color of nodes is altered in deleteFixup and 
               insertFixup.
         """
-        # see self.leftRotate, this method is exactly the same but with left and
-        # right switched to perform a rotation to the right
+        # see self.leftRotate, this method is exactly the same but with left
+        # and right switched to perform a rotation to the right
 
         # get currentNode's left child
         nodeLeft = currentNode.getLChild()
@@ -909,13 +921,13 @@ class RedBlackTree:
         nodeLeft._rightChild = currentNode
         currentNode._parent = nodeLeft
 
-    # ====================== Extra helper function ============================
+    # ====================== Extra helper function =============================
 
     def check(self, node, blackHeight):
         """
-        Description: Extra helper function to recursively check that the current
-                     tree conforms to the definition of a Red-Black Tree for 
-                     testing.
+        Description: Extra helper function to recursively check that the 
+                     current tree conforms to the definition of a Red-Black 
+                     Tree for testing.
 
         Args:
             node (RBNode): top of tree to begin testing on
@@ -924,7 +936,8 @@ class RedBlackTree:
 
         Returns:
             tuple: returns True/False depending on if tree conforms to 
-                   standards, as well as a potential error message for debugging
+                   standards, as well as a potential error message for 
+                   debugging
         """
 
         # assume tree is empty, so tree is Red-Black
@@ -964,8 +977,8 @@ class RedBlackTree:
         rightCheck = self.check(right, 0)
 
         # step 3: check to make sure the the blackHeight for each subtree is
-        # equal (aka that all simple paths to the leaves have the same number of
-        # black nodes), if not equal, generate and return error message
+        # equal (aka that all simple paths to the leaves have the same number
+        # of black nodes), if not equal, generate and return error message
         if(leftCheck[1] != rightCheck[1]):
             ret = "Number of black nodes unequal: "
             ret += f"Left child: {left} height: {leftCheck[1]} -- "
