@@ -1,10 +1,15 @@
 """
 Lab 4 - Red Black Tree
 Author: Luke Vandecasteele, Jared Hall
-Date: 3/6/2021 Last Modified: 3/7/2021
+Credits: Class notes, lectures, powerpoints and textbook.
+Date: 3/6/2021 Last Modified: 3/14/2021
 Description: Implementation of a Red-Black Tree for MealTickets
 Notes:
-    1. <Anything you think I should know while grading>
+    1. Created own transplant method for RB trees specifically. 
+    2. In some of my methods, namely deleteFixup and insertFixup,
+       I refer to some "cases". These are cases from the book, and the comments 
+       I provided for those cases were simply my interpretations and what 
+       helped me think about the problem easier.
 """
 from mealticket import *
 
